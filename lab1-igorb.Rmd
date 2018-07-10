@@ -64,3 +64,23 @@ fitdt <- rpart(class~., method="class", data=nursery_data)
 ```{r fig.width=8, message=FALSE, warning=FALSE, paged.print=TRUE}
 fancyRpartPlot(fitdt)
 ```
+## Model fitting
+## Splitting the dataset based on outcome
+The Nursing dataset has the following distribution of outcome parameter:
+```{r}
+prop.table((table(nursery_data$class)))
+```
+
+We are splitting the dataset in such a way, that train and test sets would have similar distribution of the 'class' attribute.
+```{r}
+library(caret)
+train.rows<- createDataPartition(y= nursery_data$class, p=0.75, list = FALSE)
+train.data<- nursery_data[train.rows,] # 75% data goes in here
+prop.table((table(train.data$class)))
+```
+Now creating and checking the test set
+```{r}
+test.data<- nursery_data[-train.rows,] # 25% data goes in here
+prop.table((table(test.data$class)))
+```
+Note that test set has not get any  rows with 'recommend' outcome. The reson of this is that there were only 2 occurences of those rows in the whole set and they both were picked to the train set.
