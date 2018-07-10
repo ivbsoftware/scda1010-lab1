@@ -14,6 +14,8 @@ library(ggplot2)
 library(rpart)
 library(rpart.plot)
 library(Amelia)
+library(rattle)
+library(RColorBrewer)
 ```
 
 Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
@@ -22,7 +24,7 @@ When you save the notebook, an HTML file containing the code and output will be 
 
 The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
 
-## Nursery Data Set
+## Nursery Data Set referebce and short description
 
 Source: http://archive.ics.uci.edu/ml/datasets/Nursery
 
@@ -53,4 +55,12 @@ nursery_data <- read.csv("http://archive.ics.uci.edu/ml/machine-learning-databas
 ```{r}
 head(nursery_data)
 str(nursery_data)
+```
+
+### Desision tree model fit - just to explore the features
+```{r}
+fitdt <- rpart(class~., method="class", data=nursery_data)
+```
+```{r fig.width=8, message=FALSE, warning=FALSE, paged.print=TRUE}
+fancyRpartPlot(fitdt)
 ```
