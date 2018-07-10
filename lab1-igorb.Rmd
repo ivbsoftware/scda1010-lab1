@@ -1,6 +1,8 @@
 ---
 title: "CSDA1010SUMA18 - LAB EXERCISE 1: Classification Problem"
-output: html_notebook
+output:  
+  md_document:
+    variant: markdown_github
 ---
 
 This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
