@@ -57,11 +57,11 @@ set.seed(42)
 # Data understanding
 ## Preparation
 ## Cleaning
-## Splitting the dataset into train and test
 
 # Feature engineering
 
 # Modeling
+## Splitting the dataset into train and test
 ## Decision Tree - Iteration 1
 ### Decision Tree model fit
 ### Decision Tree model evaluation
