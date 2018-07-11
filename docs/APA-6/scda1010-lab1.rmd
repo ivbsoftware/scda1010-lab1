@@ -1,0 +1,93 @@
+---
+title             : "RANKING APPLICATIONS FOR NURSERY SCHOOLS CLASSIFICATION PROBLEM"
+shorttitle        : "Ranking applications for nursery schools"
+
+author: 
+  - name          : "Viviane Adohouannon"
+    affiliation   : "1"
+  - name          : "Kate Alexander"
+    affiliation   : "1"
+  - name          : "Juan Arangote"
+    affiliation   : "1"
+  - name          : "Dian Azbel"
+    affiliation   : "1"
+  - name          : "Igor Baranov"
+    affiliation   : "1"
+
+affiliation:
+  - id            : "1"
+    institution   : "York University School of Continious Studies"
+
+author_note:
+  Group TFG: CSDA1010SUMA18, Lab assignment 1 - Classification Problem
+
+abstract:
+   Nursery Database was derived from a hierarchical decision model originally developed to rank applications for nursery schools
+  
+
+bibliography      : ["r-references.bib"]
+
+figsintext        : no
+figurelist        : no
+tablelist         : no
+footnotelist      : no
+lineno            : no
+mask              : no
+linkcolor         : "blue"
+class             : "man"
+output            : papaja::apa6_pdf
+---
+
+```{r load_packages, include = FALSE}
+library("papaja")
+```
+
+```{r analysis_preferences}
+# Seed for random number generation
+set.seed(42)
+```
+
+
+# Introduction
+## Background
+## Objective and Hypothesis
+## Assessment of Situation
+## Plan
+
+# Data understanding
+## Preparation
+## Cleaning
+## Splitting the dataset into train and test
+
+# Feature engineering
+
+# Modeling
+## Decision Tree - Iteration 1
+### Decision Tree model fit
+### Decision Tree model evaluation
+
+## Random Forest - Iteration 2
+### Random Forest model fit
+### Random Forest model evaluation
+
+## Random Forest - Iteration 3
+### Random Forest model fit
+### Random Forest model evaluation
+
+# Dicsussion
+
+# Conclusion
+
+\newpage
+
+# References
+```{r create_r-references}
+r_refs(file = "r-references.bib")
+```
+
+\begingroup
+\setlength{\parindent}{-0.5in}
+\setlength{\leftskip}{0.5in}
+
+<div id = "refs"></div>
+\endgroup
