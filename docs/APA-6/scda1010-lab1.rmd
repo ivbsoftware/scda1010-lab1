@@ -19,7 +19,7 @@ affiliation:
     institution   : "York University School of Continious Studies"
 
 author_note:
-  Group TFG: CSDA1010SUMA18, Lab assignment 1 - Classification Problem
+  Group TFG, CSDA1010SUMA18, Lab 1 - Classification Problem
 
 abstract:
    Nursery Database was derived from a hierarchical decision model originally developed to rank applications for nursery schools
