@@ -53,9 +53,28 @@ nursery_data <- read.csv("http://archive.ics.uci.edu/ml/machine-learning-databas
 
 ## Data Set exploration and cleaning
 ```{r}
+dim(nursery_data)
 head(nursery_data)
+```
+
+### Data structure
+```{r}
 str(nursery_data)
 ```
+
+### Data summary
+```{r}
+summary(nursery_data)
+```
+
+
+
+### Checking missing values (missing values or empty values)
+
+```{r}
+colSums(is.na(nursery_data)|nursery_data=='')
+```
+
 ## Splitting the dataset into train and test based on outcome (class)
 The Nursing dataset has the following distribution of outcome parameter:
 ```{r}
@@ -78,9 +97,8 @@ prop.table((table(test.data$class)))
 
 Note that test set has not get any  rows with 'recommend' outcome. The reson of this is that there were only 2 occurences of those rows in the whole set and they both were picked to the train set.
 
-## Iterative data model fit and evaluation
-
-### Interation 1: Decision Tree model fit
+# Iterative data model fit and evaluation
+## Interation 1: Decision Tree model fit
 ```{r}
 fitdt <- rpart(class~., method="class", data=train.data)
 ```
@@ -103,4 +121,36 @@ head(dtPredictedClass, n=200)
  confusionMatrix(data=dtPredictedClass$prediction,dtPredictedClass$original)
 ```
  
+Another way to estimate accuracy
+```{r}
+confusion.matrix <- prop.table(table(dtPredictedClass$prediction,dtPredictedClass$original))
+confusion.matrix
+accuracy <- confusion.matrix[1,1]+confusion.matrix[2,2]+confusion.matrix[3,4]
+accuracy
+```
 
+## Interation 2: Random Forest Tree model fit with defaults
+```{r}
+library(randomForest)
+fitRF1 <- randomForest(as.factor(class)~.,
+                      data=train.data, 
+                      importance=TRUE, 
+                      ntree=2000)
+```
+
+### Checking what variables were important
+```{r}
+varImpPlot(fitRF1,main = "Importance of variables")
+```
+### Prediction with Randow Forest Iteration 1
+```{r}
+PredictionRF1 <- predict(fitRF1, test.data)
+head(PredictionRF1)
+```
+### Evaluation of prediction
+ 
+```{r}
+ confusionMatrix(data=PredictionRF1,test.data$class)
+```
+
+So far Accuracy is 0.975
