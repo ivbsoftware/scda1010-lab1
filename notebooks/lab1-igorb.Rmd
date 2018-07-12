@@ -84,14 +84,14 @@ prop.table((table(nursery_data$class)))
 We are splitting the dataset in such a way, that train and test sets would have similar distribution of the 'class' attribute. 
 The train set will contain 75% of all data.
 ```{r}
-train.rows<- createDataPartition(y= nursery_data$class, p=0.75, list = FALSE)
-train.data<- nursery_data[train.rows,] # 75% data goes in here
+train.rows<- createDataPartition(y= nursery_data$class, p=0.7, list = FALSE)
+train.data<- nursery_data[train.rows,] # 70% data goes in here
 prop.table((table(train.data$class)))
 ```
 
 Now creating and checking the test set containing 25% of the data
 ```{r}
-test.data<- nursery_data[-train.rows,] # 25% data goes in here
+test.data<- nursery_data[-train.rows,] # 30% data goes in here
 prop.table((table(test.data$class)))
 ```
 
@@ -100,42 +100,31 @@ Note that test set has not get any  rows with 'recommend' outcome. The reson of 
 # Iterative data model fit and evaluation
 ## Interation 1: Decision Tree model fit
 ```{r}
-fitdt <- rpart(class~., method="class", data=train.data)
+set.seed(77)
+fitdt <- rpart(as.factor(class)~., method="class", data=train.data)
 ```
 ```{r fig.width=8, message=FALSE, warning=FALSE, paged.print=TRUE}
 fancyRpartPlot(fitdt)
 ```
 ```{r}
-dtPrediction <- predict(fitdt, test.data)
+dtPrediction <- predict(fitdt, test.data, type = "class")
 head(dtPrediction,n=15)
 head(test.data,n=15)
 ```
-To estimate the quality of the prediction first we create a dataframe with 2 columns - 'original' value of 'class' in the test dataset and 'prediction', which is a name of the column of dtPrediction object with the max probalility value in the row (look at dtPrediction object above).
-```{r Original vs predicted values of test dataset}
-dtPredictedClass <-data.frame(original=test.data$class, prediction=colnames(dtPrediction)[apply(dtPrediction,1,which.max)], row.names = rownames(test.data))
-head(dtPredictedClass, n=200)
+### Evaluate Decision Tree model
+```{r}
+confusionMatrix(data=dtPrediction,test.data$class)
 ```
- 
 
-```{r}
- confusionMatrix(data=dtPredictedClass$prediction,dtPredictedClass$original)
-```
- 
-Another way to estimate accuracy
-```{r}
-confusion.matrix <- prop.table(table(dtPredictedClass$prediction,dtPredictedClass$original))
-confusion.matrix
-accuracy <- confusion.matrix[1,1]+confusion.matrix[2,2]+confusion.matrix[3,4]
-accuracy
-```
 
 ## Interation 2: Random Forest Tree model fit with defaults
 ```{r}
 library(randomForest)
+set.seed(777)
 fitRF1 <- randomForest(as.factor(class)~.,
                       data=train.data, 
                       importance=TRUE, 
-                      ntree=2000)
+                      ntree=1000)
 ```
 
 ### Checking what variables were important
@@ -152,5 +141,3 @@ head(PredictionRF1)
 ```{r}
  confusionMatrix(data=PredictionRF1,test.data$class)
 ```
-
-So far Accuracy is 0.975
