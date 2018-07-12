@@ -81,17 +81,16 @@ The Nursing dataset has the following distribution of outcome parameter:
 prop.table((table(nursery_data$class)))
 ```
 
-We are splitting the dataset in such a way, that train and test sets would have similar distribution of the 'class' attribute. 
-The train set will contain 75% of all data.
+We are splitting the dataset in such a way, that train and test sets would have similar distribution of the 'class' attribute
 ```{r}
-train.rows<- createDataPartition(y= nursery_data$class, p=0.7, list = FALSE)
-train.data<- nursery_data[train.rows,] # 70% data goes in here
+train.rows<- createDataPartition(y= nursery_data$class, p=0.5, list = FALSE)
+train.data<- nursery_data[train.rows,] # 50% data goes in here
 prop.table((table(train.data$class)))
 ```
 
-Now creating and checking the test set containing 25% of the data
+Now creating and checking the test set
 ```{r}
-test.data<- nursery_data[-train.rows,] # 30% data goes in here
+test.data<- nursery_data[-train.rows,] # 50% data goes in here
 prop.table((table(test.data$class)))
 ```
 
