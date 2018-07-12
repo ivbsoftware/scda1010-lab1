@@ -49,10 +49,13 @@ health:      recommended, priority, not_recom.
 
 ```{r}
 nursery_data <- read.csv("http://archive.ics.uci.edu/ml/machine-learning-databases/nursery/nursery.data", header = FALSE, col.names = c("parents","has_nurs","form","children","housing","finance","social","health","class"))
+
+# nursery_data <- read.csv(file = "../data/nursery_data.csv")
 ```
 
 ## Data Set exploration and cleaning
 ```{r}
+set.seed(77)
 dim(nursery_data)
 head(nursery_data)
 ```
@@ -83,14 +86,14 @@ prop.table((table(nursery_data$class)))
 
 We are splitting the dataset in such a way, that train and test sets would have similar distribution of the 'class' attribute
 ```{r}
-train.rows<- createDataPartition(y= nursery_data$class, p=0.5, list = FALSE)
-train.data<- nursery_data[train.rows,] # 50% data goes in here
+train.rows<- createDataPartition(y= nursery_data$class, p=0.9, list = FALSE)
+train.data<- nursery_data[train.rows,]
 prop.table((table(train.data$class)))
 ```
 
 Now creating and checking the test set
 ```{r}
-test.data<- nursery_data[-train.rows,] # 50% data goes in here
+test.data<- nursery_data[-train.rows,]
 prop.table((table(test.data$class)))
 ```
 
@@ -99,7 +102,6 @@ Note that test set has not get any  rows with 'recommend' outcome. The reson of 
 # Iterative data model fit and evaluation
 ## Interation 1: Decision Tree model fit
 ```{r}
-set.seed(77)
 fitdt <- rpart(as.factor(class)~., method="class", data=train.data)
 ```
 ```{r fig.width=8, message=FALSE, warning=FALSE, paged.print=TRUE}
@@ -119,7 +121,6 @@ confusionMatrix(data=dtPrediction,test.data$class)
 ## Interation 2: Random Forest Tree model fit with defaults
 ```{r}
 library(randomForest)
-set.seed(777)
 fitRF1 <- randomForest(as.factor(class)~.,
                       data=train.data, 
                       importance=TRUE, 
@@ -135,8 +136,11 @@ varImpPlot(fitRF1,main = "Importance of variables")
 PredictionRF1 <- predict(fitRF1, test.data)
 head(PredictionRF1)
 ```
+
 ### Evaluation of prediction
- 
+
 ```{r}
  confusionMatrix(data=PredictionRF1,test.data$class)
 ```
+
+
