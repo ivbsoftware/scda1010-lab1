@@ -140,7 +140,26 @@ head(PredictionRF1)
 ### Evaluation of prediction
 
 ```{r}
- confusionMatrix(data=PredictionRF1,test.data$class)
+ # confusionMatrix(data=PredictionRF1,test.data$class)
 ```
-
+### Simple way to calculate accuracy
+```{r}
+confMat <- table(PredictionRF1,test.data$class)
+confMat
+accuracy <- sum(diag(confMat))/sum(confMat)
+cat(sprintf("\nAccuracy=%f", accuracy))
+```
+### Evaluate again - tr
+```{r}
+train_control <- trainControl(method="cv", number=10)
+set.seed(7)
+rpart.grid <- expand.grid(mtry = 5)
+kf_DT <- train(as.factor(class)~., train.data, method="rf", trControl=train_control,tuneGrid=rpart.grid)
+print(kf_DT)
+t_pred <- predict(kf_DT, test.data, type="raw")
+confMat <- table(PredictionRF1,test.data$class)
+confMat
+accuracy <- sum(diag(confMat))/sum(confMat)
+cat(sprintf("\nAccuracy=%f", accuracy))
+```
 
