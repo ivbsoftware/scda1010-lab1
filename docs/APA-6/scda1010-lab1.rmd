@@ -27,7 +27,7 @@ abstract:
 
 bibliography      : ["r-references.bib"]
 
-figsintext        : no
+figsintext        : yes
 figurelist        : no
 tablelist         : no
 footnotelist      : no
@@ -45,6 +45,16 @@ library("papaja")
 ```{r analysis_preferences}
 # Seed for random number generation
 set.seed(42)
+library(readr)
+library(dplyr)
+library(ggplot2)
+library(rpart)
+library(rpart.plot)
+library(Amelia)
+library(rattle)
+library(RColorBrewer)
+library(caret)
+library(papaja)
 ```
 
 
@@ -56,6 +66,25 @@ set.seed(42)
 
 # Data understanding
 ## Preparation
+```{r}
+nursery_data <- read.csv("http://archive.ics.uci.edu/ml/machine-learning-databases/nursery/nursery.data", header = FALSE, col.names = c("parents","has_nurs","form","children","housing","finance","social","health","class"))
+# nursery_data <- read.csv(file = "../data/nursery_data.csv")
+```
+```{r ndh, results = 'asis', echo = FALSE}
+apa_table(
+  head(nursery_data, n = 15)
+  , placement = "hp"
+  , landscape = TRUE
+  , small = TRUE
+  , caption = "Nursery Data Header"
+  , note = "This is a nursery data header"
+)
+```
+```
+```{r results='markup'}
+  summary(nursery_data)
+```
+
 ## Cleaning
 
 # Feature engineering
