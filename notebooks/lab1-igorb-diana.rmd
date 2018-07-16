@@ -1,0 +1,235 @@
+---
+title: 'CSDA1010SUMA18 - LAB EXERCISE 1: Classification Problem'
+output:
+  html_document:
+    df_print: paged
+  html_notebook: default
+  pdf_document: default
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+```{r}
+library(readr)
+library(dplyr)
+library(ggplot2)
+library(rpart)
+library(rpart.plot)
+library(Amelia)
+library(rattle)
+library(RColorBrewer)
+library(caret)
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+
+## Nursery Data Set reference and short description
+
+Source: http://archive.ics.uci.edu/ml/datasets/Nursery
+
+```
+| class values
+
+not_recom, recommend, very_recom, priority, spec_prior
+
+| attributes
+
+parents:     usual, pretentious, great_pret.
+has_nurs:    proper, less_proper, improper, critical, very_crit.
+form:        complete, completed, incomplete, foster.
+children:    1, 2, 3, more.
+housing:     convenient, less_conv, critical.
+finance:     convenient, inconv.
+social:      nonprob, slightly_prob, problematic.
+health:      recommended, priority, not_recom.
+```
+
+
+```{r}
+nursery_data <- read.csv("http://archive.ics.uci.edu/ml/machine-learning-databases/nursery/nursery.data", header = FALSE, col.names = c("parents","has_nurs","form","children","housing","finance","social","health","class"))
+
+# nursery_data <- read.csv(file = "../data/nursery_data.csv")
+```
+
+## Data Set exploration and cleaning
+```{r}
+set.seed(77)
+dim(nursery_data)
+head(nursery_data)
+```
+
+### Data structure
+```{r}
+str(nursery_data)
+```
+
+### Data summary
+```{r}
+summary(nursery_data)
+```
+
+
+
+# Checking missing values (missing values or empty values)
+
+```{r}
+colSums(is.na(nursery_data)|nursery_data=='')
+```
+
+#Visualization of missing values
+
+```{r}
+missmap(nursery_data, main="nursery_data - Missings Map",
+        col=c("yellow", "black"))
+```
+
+# Splitting the dataset into train and test based on outcome (class)
+# The Nursing dataset has the following distribution of outcome parameter:
+```{r}
+prop.table((table(nursery_data$class)))
+```
+
+```{r}
+require(scales)
+ggplot(nursery_data, aes(x=as.factor(class) )) + geom_bar(aes(y = (..count..)/sum(..count..)),color="blue", fill=rgb(0.2,0,0.5) )+theme(legend.position = "none") +
+  scale_y_continuous(labels=percent)+
+  labs(x = "class",y="total")
+```
+
+# We are splitting the dataset in such a way, that train and test sets would have similar distribution of the 'class' attribute
+```{r}
+train.rows<- createDataPartition(y= nursery_data$class, p=0.9, list = FALSE)
+train.data<- nursery_data[train.rows,]
+prop.table((table(train.data$class)))
+```
+# Distribution of class depended on health
+```{r}
+ggplot(train.data,aes(x=factor(parents),fill=factor(class)))+
+  geom_bar(position="dodge")
+```
+#Class estimatation based on social picture of the family from the distribution of financial standing within the parents occupation.
+```{r}
+posn.j <- position_jitter(0.5, 0)
+ggplot(train.data,aes(x=factor(parents),y=social,col=factor(finance)))+
+  geom_jitter(size=5,alpha=0.5,position=posn.j)+
+  facet_grid(". ~ class")
+```
+# Visualize the distribution of class and health picture of family
+```{r}
+train.data$health <- as.factor(train.data$health)
+ggplot(data = train.data, mapping = aes(x = class, fill = health)) +
+  geom_bar()
+
+```
+#Class outcome based on social picture and parents income
+```{r}
+ggplot(train.data, aes(social, fill=class)) + 
+  geom_bar(aes(y = (..count..)/sum(..count..)), alpha=0.9) +
+  facet_wrap(~parents) + 
+  scale_fill_brewer(palette = "Dark2", direction = -1) +
+  scale_y_continuous(labels=scales:::percent, breaks=seq(0,0.4,0.05)) +
+  ylab("Percentage") + 
+  ggtitle("Class outcome based on social picture and parents income") +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+```
+Class outcome based on family structure  and chils's nursery
+```{r}
+ggplot(train.data, aes(form, fill=class)) + 
+  geom_bar(aes(y = (..count..)/sum(..count..)), alpha=0.9) +
+  facet_wrap(~has_nurs) + 
+  scale_fill_brewer(palette = "Dark2", direction = -1) +
+  scale_y_continuous(labels=scales:::percent, breaks=seq(0,0.4,0.05)) +
+  ylab("Percentage") + 
+  ggtitle("Class outcome based on family structure  and chils's nursery ") +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+```
+```
+
+#Now creating and checking the test set
+```{r}
+test.data<- nursery_data[-train.rows,]
+prop.table((table(test.data$class)))
+```
+```{r}
+ggplot(test.data, aes(x=as.factor(class) )) + geom_bar(aes(y = (..count..)/sum(..count..)),width=0.4,color="red", fill=rgb(0.9,1,0.7) )+theme(legend.position = "none") +
+  labs(x = "class",y="total")+scale_y_continuous(labels=percent)
+```
+
+Note that test set has not get any  rows with 'recommend' outcome. The reason of this is that there were only 2 occurences of those rows in the whole set and they both were picked to the train set.
+
+# Iterative data model fit and evaluation
+## Interation 1: Decision Tree model fit
+```{r}
+fitdt <- rpart(as.factor(class)~., method="class", data=train.data)
+```
+```{r fig.width=8, message=FALSE, warning=FALSE, paged.print=TRUE}
+fancyRpartPlot(fitdt)
+```
+```{r}
+dtPrediction <- predict(fitdt, test.data, type = "class")
+head(dtPrediction,n=15)
+head(test.data,n=15)
+```
+### Evaluate Decision Tree model
+```{r}
+confusionMatrix(data=dtPrediction,test.data$class)
+```
+
+
+## Interation 2: Random Forest Tree model fit with defaults
+```{r}
+library(randomForest)
+fitRF1 <- randomForest(as.factor(class)~.,
+                      data=train.data, 
+                      importance=TRUE, 
+                      ntree=1000)
+```
+
+### Checking what variables were important
+```{r}
+varImpPlot(fitRF1,main = "Importance of variables")
+```
+### Prediction with Randow Forest Iteration 1
+```{r}
+PredictionRF1 <- predict(fitRF1, test.data)
+head(PredictionRF1)
+```
+
+### Evaluation of prediction
+
+```{r}
+ # confusionMatrix(data=PredictionRF1,test.data$class)
+```
+### Simple way to calculate accuracy
+```{r}
+confMat <- table(PredictionRF1,test.data$class)
+confMat
+accuracy <- sum(diag(confMat))/sum(confMat)
+cat(sprintf("\nAccuracy=%f", accuracy))
+```
+### Evaluate again - tr
+```{r}
+train_control <- trainControl(method="cv", number=10)
+set.seed(7)
+rpart.grid <- expand.grid(mtry = 5)
+kf_DT <- train(as.factor(class)~., train.data, method="rf", trControl=train_control,tuneGrid=rpart.grid)
+print(kf_DT)
+t_pred <- predict(kf_DT, test.data, type="raw")
+confMat <- table(PredictionRF1,test.data$class)
+confMat
+accuracy <- sum(diag(confMat))/sum(confMat)
+cat(sprintf("\nAccuracy=%f", accuracy))
+```
+
