@@ -50,8 +50,16 @@ health:      recommended, priority, not_recom.
 
 
 ```{r}
-nursery_data <- read.csv("http://archive.ics.uci.edu/ml/machine-learning-databases/nursery/nursery.data", header = FALSE, col.names = c("parents","has_nurs","form","children","housing","finance","social","health","class"))
+nursery_data <- 
+  read.csv("http://archive.ics.uci.edu/ml/machine-learning-databases/nursery/nursery.data", 
+  header = FALSE, 
+  col.names = c("parents","has_nurs","form",
+                "children","housing","finance",
+                "social","health","class"))
 
+```
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
 # nursery_data <- read.csv(file = "../data/nursery_data.csv")
 ```
 

@@ -1,0 +1,617 @@
+% !TeX root = RJwrapper.tex
+\title{Ranking Applications for Nursery Schools}
+\author{by Viviane Adohouannon, Kate Alexander, Juan Arangote, Dian Azbel, Igor Baranov}
+
+\maketitle
+
+\abstract{%
+Nursery Database was derived from a hierarchical decision model
+originally developed to rank applications for nursery schools.Out task
+was to develop a classification model to develop a reliable
+recomendation algorithm to predict is a specific student is sutable to
+be addmitted to a nursing school.
+}
+
+% Any extra LaTeX you need in the preamble
+
+\hypertarget{introduction}{%
+\section{Introduction}\label{introduction}}
+
+This section may contain a figure such as Figure \ref{figure:rlogo}.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics{Rlogo}
+  \caption{The logo of R.}
+  \label{figure:rlogo}
+\end{figure}
+
+\hypertarget{background}{%
+\subsection{Background}\label{background}}
+
+Introductory section which may include references in parentheses
+\citep{R}, or cite a reference such as \citet{R} in the text.
+
+Nursery Data is described as \ldots{}Sed ut dui dui. Vestibulum vel
+velit at mauris auctor gravida condimentum porttitor metus. Integer
+tempus nunc ac sem pharetra volutpat. Fusce vitae eleifend leo. Ut vel
+tempor nibh. Proin eget fermentum leo. Mauris pharetra vitae sem eget
+dictum. Sed at neque vitae metus lobortis luctus. Morbi sapien diam,
+vulputate sed diam vitae, pharetra accumsan mauris. Curabitur pretium
+nulla turpis, porta porta odio tempor vitae. In vehicula volutpat dui et
+consequat. Nam id lorem molestie sapien ultrices elementum. In vehicula
+metus elit, nec rhoncus est efficitur et. Proin ex tellus, vestibulum a
+eros at, maximus euismod justo.
+
+Source: \url{http://archive.ics.uci.edu/ml/datasets/Nursery}
+
+\begin{verbatim}
+| class values
+
+not_recom, recommend, very_recom, priority, spec_prior
+
+| attributes
+
+parents:     usual, pretentious, great_pret.
+has_nurs:    proper, less_proper, improper, critical, very_crit.
+form:        complete, completed, incomplete, foster.
+children:    1, 2, 3, more.
+housing:     convenient, less_conv, critical.
+finance:     convenient, inconv.
+social:      nonprob, slightly_prob, problematic.
+health:      recommended, priority, not_recom.
+\end{verbatim}
+
+\hypertarget{objective-and-hypothesis}{%
+\subsection{Objective and Hypothesis}\label{objective-and-hypothesis}}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+mollit anim id est laborum.
+
+\hypertarget{assessment-of-situation}{%
+\subsection{Assessment of Situation}\label{assessment-of-situation}}
+
+At vero eos et accusamus et iusto odio dignissimos ducimus qui
+blanditiis praesentium voluptatum deleniti atque corrupti quos dolores
+et quas molestias excepturi sint occaecati cupiditate non provident,
+similique sunt in culpa qui officia deserunt mollitia animi, id est
+laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita
+distinctio. Nam libero tempore, cum soluta nobis est eligendi optio
+cumque nihil impedit quo minus id quod maxime placeat facere possimus,
+omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem
+quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet
+ut et voluptates repudiandae sint et molestiae non recusandae.
+
+\hypertarget{plan}{%
+\subsection{Plan}\label{plan}}
+
+Et harum quidem rerum facilis est et expedita distinctio. Nam libero
+tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo
+minus id quod:
+
+\begin{itemize}
+\tightlist
+\item
+  Cras sit amet lacus luctus massa lobortis sagittis.
+\item
+  Curabitur convallis nisi non fringilla mattis.
+\item
+  Etiam auctor massa nec orci hendrerit convallis.
+\item
+  Nunc et tortor eu nisl gravida tempor a a lorem.
+\item
+  Morbi sit amet sem posuere, aliquam ex ut, lacinia nulla.
+\end{itemize}
+
+\hypertarget{data-understanding}{%
+\section{Data understanding}\label{data-understanding}}
+
+Harum quidem rerum facilis est et expedita distinctio. Nam libero
+tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo
+minus id quod.
+
+\hypertarget{preparation}{%
+\subsection{Preparation}\label{preparation}}
+
+\begin{table}[ht]
+\centering
+\scalebox{0.75}{
+\begin{tabular}{rrlllllllll}
+  \hline
+ & X & parents & has\_nurs & form & children & housing & finance & social & health & class \\ 
+  \hline
+1 &   1 & usual & proper & complete & 1 & convenient & convenient & nonprob & recommended & recommend \\ 
+  2 &   2 & usual & proper & complete & 1 & convenient & convenient & nonprob & priority & priority \\ 
+  3 &   3 & usual & proper & complete & 1 & convenient & convenient & nonprob & not\_recom & not\_recom \\ 
+  4 &   4 & usual & proper & complete & 1 & convenient & convenient & slightly\_prob & recommended & recommend \\ 
+  5 &   5 & usual & proper & complete & 1 & convenient & convenient & slightly\_prob & priority & priority \\ 
+  6 &   6 & usual & proper & complete & 1 & convenient & convenient & slightly\_prob & not\_recom & not\_recom \\ 
+  7 &   7 & usual & proper & complete & 1 & convenient & convenient & problematic & recommended & priority \\ 
+  8 &   8 & usual & proper & complete & 1 & convenient & convenient & problematic & priority & priority \\ 
+  9 &   9 & usual & proper & complete & 1 & convenient & convenient & problematic & not\_recom & not\_recom \\ 
+  10 &  10 & usual & proper & complete & 1 & convenient & inconv & nonprob & recommended & very\_recom \\ 
+   \hline
+\end{tabular}
+}
+\caption{\tt Nursery Data Dataset (head)} 
+\end{table}
+
+Summary of Nursery Data set is extracted by the folloving `summary'
+function, the results are presented in Table \ref{table:dsum1} and Table
+\ref{table:dsum2}.
+
+We can conclude that: consectetur adipiscing elit. Aenean magna urna,
+sodales vel blandit sed, condimentum sit amet ante. Phasellus pulvinar
+ullamcorper porttitor. Cras vitae ipsum in magna condimentum malesuada
+ut at massa. Duis quis quam faucibus, euismod lacus sit amet,
+scelerisque odio.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{rlllll}
+  \hline
+ &       X &        parents &        has\_nurs &         form & children \\ 
+  \hline
+X & Min.   :    1   & great\_pret :4320   & critical   :2592   & complete  :3240   & 1   :3240   \\ 
+  X.1 & 1st Qu.: 3241   & pretentious:4320   & improper   :2592   & completed :3240   & 2   :3240   \\ 
+  X.2 & Median : 6480   & usual      :4320   & less\_proper:2592   & foster    :3240   & 3   :3240   \\ 
+  X.3 & Mean   : 6480   &  & proper     :2592   & incomplete:3240   & more:3240   \\ 
+  X.4 & 3rd Qu.: 9720   &  & very\_crit  :2592   &  &  \\ 
+  X.5 & Max.   :12960   &  &  &  &  \\ 
+   \hline
+\end{tabular}
+\caption{\tt Summary of Nursery Data Dataset, columns 1-5} 
+\label{table:dsum1}
+\end{table}
+\begin{table}[ht]
+\centering
+\begin{tabular}{rllll}
+  \hline
+ &       housing &       finance &           social &         health \\ 
+  \hline
+X & convenient:4320   & convenient:6480   & nonprob      :4320   & not\_recom  :4320   \\ 
+  X.1 & critical  :4320   & inconv    :6480   & problematic  :4320   & priority   :4320   \\ 
+  X.2 & less\_conv :4320   &  & slightly\_prob:4320   & recommended:4320   \\ 
+  X.3 &  &  &  &  \\ 
+  X.4 &  &  &  &  \\ 
+  X.5 &  &  &  &  \\ 
+   \hline
+\end{tabular}
+\caption{\tt Summary of Nursery Data Dataset, columns 6-9} 
+\label{table:dsum2}
+\end{table}
+
+Distribution of Class attribute presented in Figure \ref{fig:classd}.
+Morbi volutpat augue vitae porta lobortis. Integer sit amet neque vel
+risus aliquam scelerisque et eget est. Cras maximus ex nec pharetra
+dictum. Vivamus vehicula ante sodales massa rhoncus, et blandit tortor
+interdum. Pellentesque aliquam ligula eu justo porttitor, non fringilla
+erat vehicula. Pellentesque et dolor non nunc aliquet euismod. Vivamus
+vel malesuada lorem. Fusce eget mauris a nulla sollicitudin eleifend eu
+auctor ligula. Sed nec dictum lorem. Vestibulum bibendum ultrices lorem,
+id fermentum felis tincidunt eu. Curabitur ipsum justo, dictum id
+finibus vitae, pulvinar non tortor. Curabitur vel mi a urna gravida
+commodo vitae vel libero. Maecenas imperdiet sed diam eget viverra.
+
+\begin{Schunk}
+\begin{Sinput}
+prop.table((table(nursery_data$class)))
+\end{Sinput}
+\begin{Soutput}
+#> 
+#>   not_recom    priority   recommend  spec_prior  very_recom 
+#> 0.333333333 0.329166667 0.000154321 0.312037037 0.025308642
+\end{Soutput}
+\begin{Sinput}
+ggplot(nursery_data, aes(x=as.factor(class) )) + 
+  geom_bar(aes(y= (..count..)/sum(..count..)),color="blue",fill=rgb(0.2,0,0.5)) +
+  theme(legend.position = "none") +
+  scale_y_continuous(labels=scales:::percent) +
+  labs(x = "class",y="total")
+\end{Sinput}
+\begin{figure}
+
+{\centering \includegraphics{csda1010-lab1lab1_files/figure-latex/classd-1} 
+
+}
+
+\caption[Distribution of Class attribute]{Distribution of Class attribute}\label{fig:classd}
+\end{figure}
+\end{Schunk}
+
+The following code (Figure \ref{fig:classdp}) renders distribution of
+class attribute depending on parents attribute. Pellentesque aliquam
+ligula eu justo porttitor, non fringilla erat vehicula. Pellentesque et
+dolor non nunc aliquet euismod. Vivamus vel malesuada lorem. Fusce eget
+mauris a nulla sollicitudin eleifend eu auctor ligula. Sed nec dictum
+lorem. Vestibulum bibendum ultrices lorem, id fermentum felis tincidunt
+eu. Curabitur ipsum justo, dictum id finibus vitae, pulvinar non tortor.
+Curabitur vel mi a urna gravida commodo vitae vel libero. Maecenas
+imperdiet sed diam eget viverra.
+
+\begin{Schunk}
+\begin{Sinput}
+ggplot(nursery_data,aes(x=factor(parents),fill=factor(class)))+
+  geom_bar(position="dodge")
+\end{Sinput}
+\begin{figure}
+
+{\centering \includegraphics{csda1010-lab1lab1_files/figure-latex/classdp-1} 
+
+}
+
+\caption[Distribution of Class attribute depending on parents]{Distribution of Class attribute depending on parents}\label{fig:classdp}
+\end{figure}
+\end{Schunk}
+
+The following code (Figure \ref{fig:classdh}) renders distribution of
+class attribute depending on `health' attribute. Pellentesque aliquam
+ligula eu justo porttitor, non fringilla erat vehicula. Pellentesque et
+dolor non nunc aliquet euismod. Vivamus vel malesuada lorem. Fusce eget
+mauris a nulla sollicitudin eleifend eu auctor ligula. Sed nec dictum
+lorem. Vestibulum bibendum ultrices lorem, id fermentum felis tincidunt
+eu. Curabitur ipsum justo, dictum id finibus vitae, pulvinar non tortor.
+Curabitur vel mi a urna gravida commodo vitae vel libero. Maecenas
+imperdiet sed diam eget viverra.
+
+\begin{Schunk}
+\begin{Sinput}
+nursery_data$health <- as.factor(nursery_data$health)
+ggplot(data = nursery_data, mapping = aes(x = class, fill = health)) +
+  geom_bar()
+\end{Sinput}
+\begin{figure}
+
+{\centering \includegraphics{csda1010-lab1lab1_files/figure-latex/classdh-1} 
+
+}
+
+\caption[Distribution of Class attribute depending on health]{Distribution of Class attribute depending on health}\label{fig:classdh}
+\end{figure}
+\end{Schunk}
+
+The following code (Figure \ref{fig:classdi}) renders distribution of
+class attribute depending on `'social' attribute. Pellentesque aliquam
+ligula eu justo porttitor, non fringilla erat vehicula. Pellentesque et
+dolor non nunc aliquet euismod. Vivamus vel malesuada lorem. Fusce eget
+mauris a nulla sollicitudin eleifend eu auctor ligula. Sed nec dictum
+lorem. Vestibulum bibendum ultrices lorem, id fermentum felis tincidunt
+eu. Curabitur ipsum justo, dictum id finibus vitae, pulvinar non tortor.
+Curabitur vel mi a urna gravida commodo vitae vel libero. Maecenas
+imperdiet sed diam eget viverra.
+
+\begin{Schunk}
+\begin{Sinput}
+ggplot(nursery_data, aes(social, fill=class)) + 
+  geom_bar(aes(y = (..count..)/sum(..count..)), alpha=0.9) +
+  facet_wrap(~parents) + 
+  scale_fill_brewer(palette = "Dark2", direction = -1) +
+  scale_y_continuous(labels=scales:::percent, breaks=seq(0,0.4,0.05)) +
+  ylab("Percentage") +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+\end{Sinput}
+\begin{figure}
+
+{\centering \includegraphics{csda1010-lab1lab1_files/figure-latex/classdi-1} 
+
+}
+
+\caption[Distribution of Class attribute depending on income]{Distribution of Class attribute depending on income}\label{fig:classdi}
+\end{figure}
+\end{Schunk}
+
+The following code (Figure \ref{fig:classdi}) renders distribution of
+`class' attribute depending on `nursery' attribute. Pellentesque aliquam
+ligula eu justo porttitor, non fringilla erat vehicula. Pellentesque et
+dolor non nunc aliquet euismod. Vivamus vel malesuada lorem. Fusce eget
+mauris a nulla sollicitudin eleifend eu auctor ligula. Sed nec dictum
+lorem. Vestibulum bibendum ultrices lorem, id fermentum felis tincidunt
+eu. Curabitur ipsum justo, dictum id finibus vitae, pulvinar non tortor.
+Curabitur vel mi a urna gravida commodo vitae vel libero. Maecenas
+imperdiet sed diam eget viverra.
+
+\begin{Schunk}
+\begin{Sinput}
+ggplot(nursery_data, aes(form, fill=class)) + 
+  geom_bar(aes(y = (..count..)/sum(..count..)), alpha=0.9) +
+  facet_wrap(~has_nurs) + 
+  scale_fill_brewer(palette = "Dark2", direction = -1) +
+  scale_y_continuous(labels=scales:::percent, breaks=seq(0,0.4,0.05)) +
+  ylab("Percentage") +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+\end{Sinput}
+\begin{figure}
+
+{\centering \includegraphics{csda1010-lab1lab1_files/figure-latex/classdn-1} 
+
+}
+
+\caption[Distribution of Class attribute depending on nursery]{Distribution of Class attribute depending on nursery}\label{fig:classdn}
+\end{figure}
+\end{Schunk}
+
+The conclusion is: aliquam ligula eu justo porttitor, non fringilla erat
+vehicula. Pellentesque et dolor non nunc aliquet euismod. Vivamus vel
+malesuada lorem. Fusce eget mauris a nulla sollicitudin eleifend eu
+auctor ligula. Sed nec dictum lorem. Vestibulum bibendum ultrices lorem,
+id fermentum felis tincidunt eu. Curabitur ipsum justo, dictum id
+finibus vitae, pulvinar non tortor. Curabitur vel mi a urna gravida
+commodo vitae vel libero. Maecenas imperdiet sed diam eget viverra.
+
+\hypertarget{modeling}{%
+\section{Modeling}\label{modeling}}
+
+\hypertarget{splitting-the-dataset-into-train-and-test}{%
+\subsection{Splitting the dataset into train and
+test}\label{splitting-the-dataset-into-train-and-test}}
+
+We are splitting the dataset in such a way, that train and test sets
+would have similar distribution of the `class' attribute.
+
+\begin{Schunk}
+\begin{Sinput}
+train.rows<- createDataPartition(y= nursery_data$class, p=0.9, list = FALSE)
+train.data<- nursery_data[train.rows,]
+prop.table((table(train.data$class)))
+\end{Sinput}
+\begin{Soutput}
+#> 
+#>    not_recom     priority    recommend   spec_prior   very_recom 
+#> 0.3332761872 0.3291616664 0.0001714384 0.3120178296 0.0253728785
+\end{Soutput}
+\end{Schunk}
+
+\begin{Schunk}
+\begin{Sinput}
+test.data<- nursery_data[-train.rows,]
+prop.table((table(test.data$class)))
+\end{Sinput}
+\begin{Soutput}
+#> 
+#>  not_recom   priority  recommend spec_prior very_recom 
+#> 0.33384853 0.32921175 0.00000000 0.31221020 0.02472952
+\end{Soutput}
+\end{Schunk}
+
+The following code (Figure \ref{fig:testd}) renders distribution of
+`class' attribute depending on `nursery' attribute. Pellentesque aliquam
+ligula eu justo porttitor, non fringilla erat vehicula. Pellentesque et
+dolor non nunc aliquet euismod. Vivamus vel malesuada lorem. Fusce eget
+mauris a nulla sollicitudin eleifend eu auctor ligula. Sed nec dictum
+lorem. Vestibulum bibendum ultrices lorem, id fermentum felis tincidunt
+eu. Curabitur ipsum justo, dictum id finibus vitae, pulvinar non tortor.
+Curabitur vel mi a urna gravida commodo vitae vel libero. Maecenas
+imperdiet sed diam eget viverra.
+
+\begin{Schunk}
+\begin{Sinput}
+ggplot(test.data, aes(x=as.factor(class))) + 
+  geom_bar(aes(y = (..count..)/sum(..count..)),width=0.4,
+  color="red", fill=rgb(0.9,1,0.7) )+theme(legend.position = "none") + 
+  labs(x = "class",y="total")+scale_y_continuous(labels=scales:::percent)
+\end{Sinput}
+\begin{figure}
+
+{\centering \includegraphics{csda1010-lab1lab1_files/figure-latex/testd-1} 
+
+}
+
+\caption[Distribution of Class attribute depending on nursery]{Distribution of Class attribute depending on nursery}\label{fig:testd}
+\end{figure}
+\end{Schunk}
+
+\hypertarget{decision-tree-model-fit}{%
+\subsection{Decision Tree model fit}\label{decision-tree-model-fit}}
+
+As a first step we will train a Desigion Tree model. This model is known
+to be computationally fast, but not very precise. We will use all
+default parameters and all attributes of thetrain dataset. Resuling tree
+is presented in Figure \ref{fig:dtree}. It shows that Fusce eget mauris
+a nulla sollicitudin eleifend eu auctor ligula. Sed nec dictum lorem.
+Vestibulum bibendum ultrices lorem, id fermentum felis tincidunt eu.
+Curabitur ipsum justo, dictum id finibus vitae, pulvinar non tortor.
+Curabitur vel mi a urna gravida commodo vitae vel libero. Maecenas
+imperdiet sed diam eget viverra.
+
+\begin{Schunk}
+\begin{Sinput}
+fitdt <- rpart(as.factor(class)~., method="class", data=train.data)
+fancyRpartPlot(fitdt, main = "", sub = "")
+\end{Sinput}
+\begin{figure}
+
+{\centering \includegraphics{csda1010-lab1lab1_files/figure-latex/dtree-1} 
+
+}
+
+\caption[Decision tree diagram]{Decision tree diagram}\label{fig:dtree}
+\end{figure}
+\end{Schunk}
+
+\hypertarget{decision-tree-model-evaluation}{%
+\subsection{Decision Tree model
+evaluation}\label{decision-tree-model-evaluation}}
+
+\begin{Schunk}
+\begin{Sinput}
+dtPrediction <- predict(fitdt, test.data, type = "class")
+\end{Sinput}
+\end{Schunk}
+
+\begin{Schunk}
+\begin{Sinput}
+confMat <- table(dtPrediction,test.data$class)
+confMat
+\end{Sinput}
+\begin{Soutput}
+#>             
+#> dtPrediction not_recom priority recommend spec_prior very_recom
+#>   not_recom        432        0         0          0          0
+#>   priority           0      325         0         11         32
+#>   recommend          0        0         0          0          0
+#>   spec_prior         0      101         0        393          0
+#>   very_recom         0        0         0          0          0
+\end{Soutput}
+\begin{Sinput}
+accuracy <- sum(diag(confMat))/sum(confMat)
+cat(sprintf("\nAccuracy=%f", accuracy))
+\end{Sinput}
+\begin{Soutput}
+#> 
+#> Accuracy=0.888717
+\end{Soutput}
+\end{Schunk}
+
+\hypertarget{random-forest-model-fit}{%
+\subsection{Random Forest model fit}\label{random-forest-model-fit}}
+
+\begin{Schunk}
+\begin{Sinput}
+library(randomForest)
+fitRF1 <- randomForest(as.factor(class)~.,
+                      data=train.data, 
+                      importance=TRUE, 
+                      ntree=1000)
+\end{Sinput}
+\end{Schunk}
+
+Importance of the dataset attributes for the prediction of the `class'
+attribute shown in Figure \ref{fig:forimp}. Nam libero tempore, cum
+soluta nobis est eligendi optio cumque nihil impedit quo minus id quod
+maxime placeat facere possimus, omnis voluptas assumenda est, omnis
+dolor repellendus. Temporibus autem quibusdam et aut officiis debitis
+aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint
+et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente
+delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut
+perferendis doloribus asperiores repellat.
+
+\begin{Schunk}
+\begin{Sinput}
+varImpPlot(fitRF1, main="")
+\end{Sinput}
+\begin{figure}
+
+{\centering \includegraphics{csda1010-lab1lab1_files/figure-latex/forimp-1} 
+
+}
+
+\caption[Importance of the dataset attributes for the prediction of the 'class' attribute]{Importance of the dataset attributes for the prediction of the 'class' attribute}\label{fig:forimp}
+\end{figure}
+\end{Schunk}
+
+\hypertarget{random-forest-model-prediction-and-evaluation}{%
+\subsection{Random Forest model prediction and
+evaluation}\label{random-forest-model-prediction-and-evaluation}}
+
+\begin{Schunk}
+\begin{Sinput}
+PredictionRF1 <- predict(fitRF1, test.data)
+head(PredictionRF1)
+\end{Sinput}
+\begin{Soutput}
+#>         7         9        33        48        53        60 
+#>  priority not_recom not_recom not_recom  priority not_recom 
+#> Levels: not_recom priority recommend spec_prior very_recom
+\end{Soutput}
+\end{Schunk}
+
+\begin{Schunk}
+\begin{Sinput}
+confMat <- table(PredictionRF1,test.data$class)
+confMat
+\end{Sinput}
+\begin{Soutput}
+#>              
+#> PredictionRF1 not_recom priority recommend spec_prior very_recom
+#>    not_recom        432        0         0          0          0
+#>    priority           0      425         0          0          0
+#>    recommend          0        0         0          0          0
+#>    spec_prior         0        1         0        404          0
+#>    very_recom         0        0         0          0         32
+\end{Soutput}
+\begin{Sinput}
+accuracy <- sum(diag(confMat))/sum(confMat)
+cat(sprintf("\nAccuracy=%f", accuracy))
+\end{Sinput}
+\begin{Soutput}
+#> 
+#> Accuracy=0.999227
+\end{Soutput}
+\end{Schunk}
+
+\hypertarget{dicsussion}{%
+\section{Dicsussion}\label{dicsussion}}
+
+Nor again is there anyone who loves or pursues or desires to obtain pain
+of itself, because it is pain, but because occasionally circumstances
+occur in which toil and pain can procure him some great pleasure. To
+take a trivial example, which of us ever undertakes laborious physical
+exercise, except to obtain some advantage from it? But who has any right
+to find fault with a man who chooses to enjoy a pleasure that has no
+annoying consequences, or one who avoids a pain that produces no
+resultant pleasure?"
+
+\hypertarget{conclusion}{%
+\section{Conclusion}\label{conclusion}}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+mollit anim id est laborum.
+
+This file is only a basic article template. For full details of
+\emph{The R Journal} style and information on how to prepare your
+article for submission, see the
+\href{https://journal.r-project.org/share/author-guide.pdf}{Instructions
+for Authors}.
+
+\bibliography{RJreferences}
+
+
+\address{%
+Viviane Adohouannon\\
+York University School of Continious Studies\\
+\\
+}
+\url{https://learn.continue.yorku.ca/user/view.php?id=21444}
+
+\address{%
+Kate Alexander\\
+York University School of Continious Studies\\
+\\
+}
+\url{https://learn.continue.yorku.ca/user/view.php?id=21524}
+
+\address{%
+Juan Arangote\\
+York University School of Continious Studies\\
+\\
+}
+\url{https://learn.continue.yorku.ca/user/view.php?id=21472}
+
+\address{%
+Dian Azbel\\
+York University School of Continious Studies\\
+\\
+}
+\url{https://learn.continue.yorku.ca/user/view.php?id=20687}
+
+\address{%
+Igor Baranov\\
+York University School of Continious Studies\\
+\\
+}
+\url{https://learn.continue.yorku.ca/user/profile.php?id=21219}
+
