@@ -55,7 +55,7 @@ The most important decisions depended on three sub-problems:
 Our hypothesis is..
   
 ## Assessment of Situation
-The following tables present the input attributes description with their structure:
+The following tables presents the input attributes description with their structure:
 
 ##Table 1: Variables description
 
@@ -71,13 +71,13 @@ From the data snapshot, 33% of nursery school applications ended not being recom
 
 
 ## Plan
-The main tool used in developing our reliable recomendation algorithm is R. The R language is widely used among statisticians and data miners for developing statistical software and data analysis.
+To solve the objective a group of four students calling themselves The First Group (T.F.G) from York University School of Continuing Studies, have come together to create an algorithm to test and train a classification model using the Nursery dataset. 
+
+The main tool used in developing the recomendation algorithm is R. The R language is widely used among statisticians and data miners for developing statistical software and data analysis.
 
 
 # Data understanding
-.....
-
-
+...
 
 ## Preparation
 ```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
