@@ -43,16 +43,14 @@ During this time "new housing developments populated by young families, the dema
 Source: http://kt.ijs.si/MarkoBohanec/pub/Nursery89.pdf
 M. Olave, V. Rajkovic, M. Bohanec: An application for admission in public school systems. In (I. Th. M. Snellen and W. B. H. J. van de Donk and J.-P. Baquiast, editors) Expert Systems in Public Administration, pages 145-160. Elsevier Science Publishers (North Holland), 1989.
 
-## Objective and Hypothesis
+## Objective
 
-The objective is to provide a reliable recommendation algorithm to predict if a specific applicant is a suitable candidate to be admitted into a nursery school or if the applicate should stay with their parents. The results of this recommendation may affect the child’s engagement within the school, parents’ involvement in school activities and overall satisfaction of the applicants long-term academic progress.
+The objective is to provide a reliable recommendation algorithm to predict if a specific applicant is a suitable candidate to be admitted into a nursery school or if the applicant should stay with their parents. The results of this recommendation may affect the child’s engagement within the school, parents’ involvement in school activities and overall satisfaction of the applicants long-term academic progress.
 
 The most important decisions depended on three sub-problems: 
   - Occupation of parents and child's nursery;
   - Family structure and financial standing; 
   - Social and health picture of the family. 
-  
-Our hypothesis is..
   
 ## Assessment of Situation
 The following tables presents the input attributes description with their structure:
