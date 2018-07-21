@@ -34,16 +34,17 @@ Nursery Database was derived from a hierarchical decision model originally devel
 Source: http://archive.ics.uci.edu/ml/datasets/Nursery
 
 ## Background
-Ljubljana is the capital and largest city of Slovenia. The city, with an area of 163.8 square kilometers, is situated in the Ljubljana Basin in Central Slovenia, between the Alps and the Karst. Ljubljana is located some 320 kilometers south of Munich, 477 kilometers  east of Zürich. The population of the city in 1981 was 224,817 and of those inhabients, approximately 91% of the population speak Slovene as their primary native language. The second most-spoken language is Bosnian, with Serbo-Croatian being the third most-spoken language.
+Ljubljana is the capital and largest city of Slovenia. The city with an area of 163.8 square kilometers is situated in the Ljubljana Basin in Central Slovenia, between the Alps and the Karst. Ljubljana is located some 320 kilometers south of Munich, 477 kilometers  east of Zürich. In 1981 the population of the city rose to 224,817 inhabients with approximately 91% of the population speak Slovene as their primary native language. The second most-spoken language is Bosnian, with Serbo-Croatian being the third most-spoken language.
 Source: https://en.wikipedia.org/wiki/Ljubljana
 
-"New housing developments populated by young families, the demand for children’s admission in nursery schools outstrips supply,    notwithstanding the fast growth rate of new schools. This general problem was exempliﬁed in a particular Ljubljana district where    there were approximately 600 applicants for 300 spaces to be considered by the Acceptance Committee in the local nursery school each year."
+During this time "new housing developments populated by young families, the demand for children’s admission in nursery schools outstrips supply,    notwithstanding the fast growth rate of new schools. This general problem was exempliﬁed in a particular Ljubljana district where    there were approximately 600 applicants for 300 spaces to be considered by the Acceptance Committee in the local nursery school each year."
+
 Source: http://kt.ijs.si/MarkoBohanec/pub/Nursery89.pdf
 M. Olave, V. Rajkovic, M. Bohanec: An application for admission in public school systems. In (I. Th. M. Snellen and W. B. H. J. van de Donk and J.-P. Baquiast, editors) Expert Systems in Public Administration, pages 145-160. Elsevier Science Publishers (North Holland), 1989.
 
 ## Objective and Hypothesis
 
-The objective is to provide a reliable recommendation algorithm to predict if a specific applicant is a suitable candidate to be admitted into a nursery school or if the applicate should stay with the parents. The results of this recommendation may affect the child’s engagement within the school, parents’ involvement in activities and overall satisfaction of the applicants long-term academic progress.
+The objective is to provide a reliable recommendation algorithm to predict if a specific applicant is a suitable candidate to be admitted into a nursery school or if the applicate should stay with their parents. The results of this recommendation may affect the child’s engagement within the school, parents’ involvement in school activities and overall satisfaction of the applicants long-term academic progress.
 
 The most important decisions depended on three sub-problems: 
   - Occupation of parents and child's nursery;
@@ -59,7 +60,7 @@ The following tables present the input attributes description with their structu
 
 Number of Attributes: 8, Number of Instances: 12960
 
-From the data snapshot, 33% of nursery school application ended not being recommended because of multiple reasons. Some of the applications that were recommended came from parents having good health conditions (67%) and some applications have really good social conditions contributed by 33% of the parents nursery applications being recommended.
+From the data snapshot, 33% of nursery school applications ended not being recommended because of multiple reasons. However some of the applications that were recommended came from parents having good health conditions (67%) and some applications have really good social conditions contributed by 33% of the parents nursery applications being recommended.
 
 ##Frequency Table: Targeted variable
 
