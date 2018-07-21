@@ -3,16 +3,16 @@ title: Ranking Applications for Nursery Schools
 
 author: 
   - name          : "Viviane Adohouannon"
-    affiliation   : "York University School of Continious Studies"
+    affiliation   : "York University School of Continuing Studies"
     email         : "https://learn.continue.yorku.ca/user/view.php?id=21444"  
   - name          : "Kate Alexander"
-    affiliation   : "York University School of Continious Studies"
+    affiliation   : "York University School of Continuing Studies"
     email         : "https://learn.continue.yorku.ca/user/view.php?id=21524"    
   - name          : "Diana Azbel"
-    affiliation   : "York University School of Continious Studies"
+    affiliation   : "York University School of Continuing Studies"
     email         : "https://learn.continue.yorku.ca/user/view.php?id=20687"  
   - name          : "Igor Baranov"
-    affiliation   : "York University School of Continious Studies"
+    affiliation   : "York University School of Continuing Studies"
     email         : "https://learn.continue.yorku.ca/user/profile.php?id=21219"  
 
 Abstract: >
@@ -75,7 +75,9 @@ The main tool used in developing our reliable recomendation algorithm is R. The 
 
 
 # Data understanding
-Harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod.
+.....
+
+
 
 ## Preparation
 ```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
@@ -119,14 +121,15 @@ print(dh.rescale, scalebox=.75)
 
 Summary of Nursery Data set is extracted by the folloving 'summary' function, the results are presented in Table \ref{table:dsum1} and Table \ref{table:dsum2}.
 
-We can conclude that: consectetur adipiscing elit. Aenean magna urna, sodales vel blandit sed, condimentum sit amet ante. Phasellus pulvinar ullamcorper porttitor. Cras vitae ipsum in magna condimentum malesuada ut at massa. Duis quis quam faucibus, euismod lacus sit amet, scelerisque odio.
+We can conclude that: ....
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
 dsum <- summary(nursery_data)
 xtable(dsum[,1:5], caption = "\\tt Summary of Nursery Data Dataset, columns 1-5", label = "table:dsum1")
 xtable(dsum[,6:9], caption = "\\tt Summary of Nursery Data Dataset, columns 6-9", label = "table:dsum2")
 ```
-Distribution of Class attribute presented in Figure \ref{fig:classd}. Morbi volutpat augue vitae porta lobortis. Integer sit amet neque vel risus aliquam scelerisque et eget est. Cras maximus ex nec pharetra dictum. Vivamus vehicula ante sodales massa rhoncus, et blandit tortor interdum. Pellentesque aliquam ligula eu justo porttitor, non fringilla erat vehicula. Pellentesque et dolor non nunc aliquet euismod. Vivamus vel malesuada lorem. Fusce eget mauris a nulla sollicitudin eleifend eu auctor ligula. Sed nec dictum lorem. Vestibulum bibendum ultrices lorem, id fermentum felis tincidunt eu. Curabitur ipsum justo, dictum id finibus vitae, pulvinar non tortor. Curabitur vel mi a urna gravida commodo vitae vel libero. Maecenas imperdiet sed diam eget viverra.
+Distribution of Class attribute presented in Figure \ref{fig:classd}. .......
+
 
 ```{r classd, fig.height=3, fig.width=5, fig.align="center", fig.cap="Distribution of Class attribute"}
 prop.table((table(nursery_data$class)))
@@ -137,21 +140,21 @@ ggplot(nursery_data, aes(x=as.factor(class) )) +
   labs(x = "class",y="total")
 ```
 
-The following code (Figure \ref{fig:classdp}) renders distribution of class attribute depending on parents attribute. Pellentesque aliquam ligula eu justo porttitor, non fringilla erat vehicula. Pellentesque et dolor non nunc aliquet euismod. Vivamus vel malesuada lorem. Fusce eget mauris a nulla sollicitudin eleifend eu auctor ligula. Sed nec dictum lorem. Vestibulum bibendum ultrices lorem, id fermentum felis tincidunt eu. Curabitur ipsum justo, dictum id finibus vitae, pulvinar non tortor. Curabitur vel mi a urna gravida commodo vitae vel libero. Maecenas imperdiet sed diam eget viverra.
+The following code (Figure \ref{fig:classdp}) renders distribution of class attribute depending on parents attribute. ....
 
 ```{r classdp, fig.height=3, fig.width=6, fig.align="center", fig.cap="Distribution of Class attribute depending on parents"}
 ggplot(nursery_data,aes(x=factor(parents),fill=factor(class)))+
   geom_bar(position="dodge")
 ```
 
-The following code (Figure \ref{fig:classdh}) renders distribution of class attribute depending on 'health' attribute. Pellentesque aliquam ligula eu justo porttitor, non fringilla erat vehicula. Pellentesque et dolor non nunc aliquet euismod. Vivamus vel malesuada lorem. Fusce eget mauris a nulla sollicitudin eleifend eu auctor ligula. Sed nec dictum lorem. Vestibulum bibendum ultrices lorem, id fermentum felis tincidunt eu. Curabitur ipsum justo, dictum id finibus vitae, pulvinar non tortor. Curabitur vel mi a urna gravida commodo vitae vel libero. Maecenas imperdiet sed diam eget viverra.
+The following code (Figure \ref{fig:classdh}) renders distribution of class attribute depending on 'health' attribute. ...
 
 ```{r classdh, fig.height=3, fig.width=6, fig.align="center", fig.cap="Distribution of Class attribute depending on health"}
 nursery_data$health <- as.factor(nursery_data$health)
 ggplot(data = nursery_data, mapping = aes(x = class, fill = health)) +
   geom_bar()
 ```
-The following code (Figure \ref{fig:classdi}) renders distribution of class attribute depending on ''social' attribute. Pellentesque aliquam ligula eu justo porttitor, non fringilla erat vehicula. Pellentesque et dolor non nunc aliquet euismod. Vivamus vel malesuada lorem. Fusce eget mauris a nulla sollicitudin eleifend eu auctor ligula. Sed nec dictum lorem. Vestibulum bibendum ultrices lorem, id fermentum felis tincidunt eu. Curabitur ipsum justo, dictum id finibus vitae, pulvinar non tortor. Curabitur vel mi a urna gravida commodo vitae vel libero. Maecenas imperdiet sed diam eget viverra.
+The following code (Figure \ref{fig:classdi}) renders distribution of class attribute depending on 'social' attribute..... 
 
 ```{r classdi, fig.height=3, fig.width=6, fig.align="center", fig.cap="Distribution of Class attribute depending on income"}
 ggplot(nursery_data, aes(social, fill=class)) + 
@@ -165,7 +168,7 @@ ggplot(nursery_data, aes(social, fill=class)) +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
 ```
-The following code (Figure \ref{fig:classdi}) renders distribution of 'class' attribute depending on 'nursery' attribute. Pellentesque aliquam ligula eu justo porttitor, non fringilla erat vehicula. Pellentesque et dolor non nunc aliquet euismod. Vivamus vel malesuada lorem. Fusce eget mauris a nulla sollicitudin eleifend eu auctor ligula. Sed nec dictum lorem. Vestibulum bibendum ultrices lorem, id fermentum felis tincidunt eu. Curabitur ipsum justo, dictum id finibus vitae, pulvinar non tortor. Curabitur vel mi a urna gravida commodo vitae vel libero. Maecenas imperdiet sed diam eget viverra.
+The following code (Figure \ref{fig:classdi}) renders distribution of 'class' attribute depending on 'nursery' attribute...
 
 ```{r classdn, fig.height=5, fig.width=6, fig.align="center", fig.cap="Distribution of Class attribute depending on nursery"}
 ggplot(nursery_data, aes(form, fill=class)) + 
@@ -179,12 +182,10 @@ ggplot(nursery_data, aes(form, fill=class)) +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 ```
 
-The conclusion is: aliquam ligula eu justo porttitor, non fringilla erat vehicula. Pellentesque et dolor non nunc aliquet euismod. Vivamus vel malesuada lorem. Fusce eget mauris a nulla sollicitudin eleifend eu auctor ligula. Sed nec dictum lorem. Vestibulum bibendum ultrices lorem, id fermentum felis tincidunt eu. Curabitur ipsum justo, dictum id finibus vitae, pulvinar non tortor. Curabitur vel mi a urna gravida commodo vitae vel libero. Maecenas imperdiet sed diam eget viverra.
-
 # Modeling
 ## Splitting the dataset into train and test
 
-We are splitting the dataset in such a way, that train and test sets would have similar distribution of the 'class' attribute.
+The Nursery dataset has been split in such a way that train and test sets would have the same distribution of the 'class' attribute. The reason for this is to focus on the priority of an applicants placement in a nursery school rather than an applicants family or social status.
 
 ```{r}
 train.rows<- createDataPartition(y= nursery_data$class, p=0.9, list = FALSE)
@@ -197,7 +198,7 @@ test.data<- nursery_data[-train.rows,]
 prop.table((table(test.data$class)))
 ```
 
-The following code (Figure \ref{fig:testd}) renders distribution of 'class' attribute depending on 'nursery' attribute. Pellentesque aliquam ligula eu justo porttitor, non fringilla erat vehicula. Pellentesque et dolor non nunc aliquet euismod. Vivamus vel malesuada lorem. Fusce eget mauris a nulla sollicitudin eleifend eu auctor ligula. Sed nec dictum lorem. Vestibulum bibendum ultrices lorem, id fermentum felis tincidunt eu. Curabitur ipsum justo, dictum id finibus vitae, pulvinar non tortor. Curabitur vel mi a urna gravida commodo vitae vel libero. Maecenas imperdiet sed diam eget viverra.
+The following code (Figure \ref{fig:testd}) renders distribution of 'class' attribute depending on 'nursery' attribute. ...
 
 ```{r testd, fig.height=3, fig.width=6, fig.align="center", fig.cap="Distribution of Class attribute depending on nursery"}
 ggplot(test.data, aes(x=as.factor(class))) + 
@@ -209,7 +210,7 @@ ggplot(test.data, aes(x=as.factor(class))) +
 
 ## Decision Tree model fit
 
-As a first step we will train a Desigion Tree model. This model is known to be computationally fast, but not very precise. We will use all default parameters and all attributes of thetrain dataset. Resuling tree is presented in Figure \ref{fig:dtree}. It shows that Fusce eget mauris a nulla sollicitudin eleifend eu auctor ligula. Sed nec dictum lorem. Vestibulum bibendum ultrices lorem, id fermentum felis tincidunt eu. Curabitur ipsum justo, dictum id finibus vitae, pulvinar non tortor. Curabitur vel mi a urna gravida commodo vitae vel libero. Maecenas imperdiet sed diam eget viverra.
+As a first step we have train a Decision Tree model. Though this model is known to be computationally fast but not very precise, we have use all default parameters and all attributes of the train dataset in the resulting Decision Tree presented in Figure \ref{fig:dtree}. This tree shows that..  
 
 ```{r dtree, fig.align="center", fig.cap="Decision tree diagram", message=FALSE, warning=FALSE, paged.print=FALSE}
 fitdt <- rpart(as.factor(class)~., method="class", data=train.data)
@@ -238,7 +239,7 @@ fitRF1 <- randomForest(as.factor(class)~.,
                       ntree=1000)
 ```
 
-Importance of the dataset attributes for the prediction of the 'class' attribute shown in Figure \ref{fig:forimp}. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
+Importance of the dataset attributes for the prediction of the 'class' attribute shown in Figure \ref{fig:forimp}. 
 
 ```{r forimp, fig.align="center", message=FALSE, warning=FALSE, paged.print=FALSE, fig.cap="Importance of the dataset attributes for the prediction of the 'class' attribute"}
 varImpPlot(fitRF1, main="")
@@ -262,7 +263,9 @@ cat(sprintf("\nAccuracy=%f", accuracy))
 Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?"
 
 # Conclusion
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Through exploring the Nursery Dataset and using a classification model to developed our algorithm to predict applicants suitabilty of an applicance admittance within the nursery school system, the evaluation of the model results indicated the following:
+
+
 
 This file is only a basic article template. For full details of _The R Journal_ style and information on how to prepare your article for submission, see the [Instructions for Authors](https://journal.r-project.org/share/author-guide.pdf).
 \bibliography{RJreferences}
