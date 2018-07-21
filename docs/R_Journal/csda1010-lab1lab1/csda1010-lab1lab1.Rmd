@@ -17,7 +17,8 @@ author:
 
 Abstract: >
 The speciﬁc problem under consideration is to rank selection of applicants for nursery schools in Ljubljana, Slovenia in the 1980's. 
-Nursery Database was derived from a hierarchical decision model originally developed to rank applications. A classification model has been used to developed a reliable recomendation algorithm to predict if a specific applicant is a suitable candidate to be addmitted into a nursery school. 
+Nursery Database was derived from a hierarchical decision model originally developed to rank applications.
+A classification model has been used to developed a reliable recomendation algorithm to predict if a specific applicant is a suitable candidate to be addmitted into a nursery school. 
 
 output:
   rticles::rjournal_article:
@@ -51,6 +52,8 @@ The most important decisions depended on three sub-problems:
   - Family structure and financial standing; 
   - Social and health picture of the family. 
   
+Our hypothesis is..
+  
 ## Assessment of Situation
 The following tables present the input attributes description with their structure:
 
@@ -68,13 +71,8 @@ From the data snapshot, 33% of nursery school applications ended not being recom
 
 
 ## Plan
-Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod:
+The main tool used in developing our reliable recomendation algorithm is R. The R language is widely used among statisticians and data miners for developing statistical software and data analysis.
 
- - Cras sit amet lacus luctus massa lobortis sagittis.
- - Curabitur convallis nisi non fringilla mattis.
- - Etiam auctor massa nec orci hendrerit convallis.
- - Nunc et tortor eu nisl gravida tempor a a lorem.
- - Morbi sit amet sem posuere, aliquam ex ut, lacinia nulla.
 
 # Data understanding
 Harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod.
