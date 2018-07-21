@@ -75,7 +75,7 @@ The main tool used in developing the recomendation algorithm is R. The R languag
 
 
 # Data understanding
-...
+Being able to have a positive outcome from the classification model, preparation of the Nursery dataset followed by descriptive satistic will be the first key step in producing a Random Forest model.
 
 ## Preparation
 ```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
@@ -119,14 +119,14 @@ print(dh.rescale, scalebox=.75)
 
 Summary of Nursery Data set is extracted by the folloving 'summary' function, the results are presented in Table \ref{table:dsum1} and Table \ref{table:dsum2}.
 
-We can conclude that: ....
+We can conclude that there is no missing information and dataset is in good standing to be used.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
 dsum <- summary(nursery_data)
 xtable(dsum[,1:5], caption = "\\tt Summary of Nursery Data Dataset, columns 1-5", label = "table:dsum1")
 xtable(dsum[,6:9], caption = "\\tt Summary of Nursery Data Dataset, columns 6-9", label = "table:dsum2")
 ```
-Distribution of Class attribute presented in Figure \ref{fig:classd}. .......
+Distribution of Class attribute presented in Figure2 \ref{fig:classd} shows the targeted varibles with five segments. The frequency of the segment "Recommend" is low (0.00015%) and will not be taken into consideration in the final dataset.
 
 
 ```{r classd, fig.height=3, fig.width=5, fig.align="center", fig.cap="Distribution of Class attribute"}
@@ -257,11 +257,9 @@ accuracy <- sum(diag(confMat))/sum(confMat)
 cat(sprintf("\nAccuracy=%f", accuracy))
 ```
 
-# Dicsussion
-Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?"
-
 # Conclusion
-Through exploring the Nursery Dataset and using a classification model to developed our algorithm to predict applicants suitabilty of an applicance admittance within the nursery school system, the evaluation of the model results indicated the following:
+Through exploring the Nursery Dataset and using a classification model to developed our algorithm to predict applicants suitabilty of an admittance within the nursery school system, the evaluation of the model results indicated the following:
+
 
 
 
