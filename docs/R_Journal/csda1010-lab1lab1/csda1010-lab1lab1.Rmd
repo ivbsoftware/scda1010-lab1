@@ -16,7 +16,7 @@ author:
     email         : "https://learn.continue.yorku.ca/user/profile.php?id=21219"  
 
 Abstract: >
-The speciﬁc problem under consideration is to rank selection of applicants for nursery schools in Ljubljana, Slovenia in the 1980's. 
+The specific problem under consideration is to rank selection of applicants for nursery schools in Ljubljana, Slovenia in the 1980's. 
 Nursery Database was derived from a hierarchical decision model originally developed to rank applications.
 A classification model has been used to developed a reliable recomendation algorithm to predict if a specific applicant is a suitable candidate to be addmitted into a nursery school. 
 
@@ -138,21 +138,21 @@ ggplot(nursery_data, aes(x=as.factor(class) )) +
   labs(x = "class",y="total")
 ```
 
-The following code (Figure \ref{fig:classdp}) renders distribution of class attribute depending on parents attribute. ....
+The following code (Figure \ref{fig:classdp}) renders distribution of class attribute depending on parents attribute. From this graph, it clearly shows that priority and recommendation are given to application from parent having usual and pretentious occupations. 
 
 ```{r classdp, fig.height=3, fig.width=6, fig.align="center", fig.cap="Distribution of Class attribute depending on parents"}
 ggplot(nursery_data,aes(x=factor(parents),fill=factor(class)))+
   geom_bar(position="dodge")
 ```
 
-The following code (Figure \ref{fig:classdh}) renders distribution of class attribute depending on 'health' attribute. ...
+The following code (Figure \ref{fig:classdh}) renders distribution of class attribute depending on 'health' attribute. Being healthy is most important and relevant for parents to have their nursery application being recommended. 
 
 ```{r classdh, fig.height=3, fig.width=6, fig.align="center", fig.cap="Distribution of Class attribute depending on health"}
 nursery_data$health <- as.factor(nursery_data$health)
 ggplot(data = nursery_data, mapping = aes(x = class, fill = health)) +
   geom_bar()
 ```
-The following code (Figure \ref{fig:classdi}) renders distribution of class attribute depending on 'social' attribute..... 
+The following code (Figure \ref{fig:classdi}) renders distribution of class attribute depending on 'social' attribute. 
 
 ```{r classdi, fig.height=3, fig.width=6, fig.align="center", fig.cap="Distribution of Class attribute depending on income"}
 ggplot(nursery_data, aes(social, fill=class)) + 
@@ -166,7 +166,7 @@ ggplot(nursery_data, aes(social, fill=class)) +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
 ```
-The following code (Figure \ref{fig:classdi}) renders distribution of 'class' attribute depending on 'nursery' attribute...
+The following code (Figure \ref{fig:classdi}) renders distribution of 'class' attribute depending on 'nursery' attribute.
 
 ```{r classdn, fig.height=5, fig.width=6, fig.align="center", fig.cap="Distribution of Class attribute depending on nursery"}
 ggplot(nursery_data, aes(form, fill=class)) + 
