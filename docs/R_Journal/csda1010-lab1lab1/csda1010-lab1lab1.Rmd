@@ -38,7 +38,7 @@ Source: http://archive.ics.uci.edu/ml/datasets/Nursery
 Ljubljana is the capital and largest city of Slovenia. The city with an area of 163.8 square kilometers is situated in the Ljubljana Basin in Central Slovenia, between the Alps and the Karst. Ljubljana is located some 320 kilometers south of Munich, 477 kilometers  east of Zürich. In 1981 the population of the city rose to 224,817 inhabients with approximately 91% of the population speak Slovene as their primary native language. The second most-spoken language is Bosnian, with Serbo-Croatian being the third most-spoken language.
 Source: https://en.wikipedia.org/wiki/Ljubljana
 
-During this time "new housing developments populated by young families, the demand for children’s admission in nursery schools outstrips supply,    notwithstanding the fast growth rate of new schools. This general problem was exempliﬁed in a particular Ljubljana district where    there were approximately 600 applicants for 300 spaces to be considered by the Acceptance Committee in the local nursery school each year."
+During this time "new housing developments populated by young families, the demand for children’s admission in nursery schools outstrips supply,    notwithstanding the fast growth rate of new schools."
 
 Source: http://kt.ijs.si/MarkoBohanec/pub/Nursery89.pdf
 M. Olave, V. Rajkovic, M. Bohanec: An application for admission in public school systems. In (I. Th. M. Snellen and W. B. H. J. van de Donk and J.-P. Baquiast, editors) Expert Systems in Public Administration, pages 145-160. Elsevier Science Publishers (North Holland), 1989.
