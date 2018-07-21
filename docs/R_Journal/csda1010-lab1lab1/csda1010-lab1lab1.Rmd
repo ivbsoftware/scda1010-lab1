@@ -28,15 +28,9 @@ output:
 ---
 
 # Introduction
+Malala Yousafzai once said, “Let us remember: One book, one pen, one child, and one teacher can change the world.” Education is important because it gives people the skills of basic literacy and numeracy, as well as the ability to communicate, complete tasks and work with others. 
 
-This section may contain a figure such as Figure \ref{figure:rlogo}.
-
-\begin{figure}[htbp]
-  \centering
-  \includegraphics{Rlogo}
-  \caption{The logo of R.}
-  \label{figure:rlogo}
-\end{figure}
+Early schooling such as Nursery school education matters most as it impacts children's long-term development and academic progress. While all children benefit from a high-quality nursery school, family and social structure may affect the enrollment process into these schools.
 
 ## Background
 
