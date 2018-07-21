@@ -7,19 +7,17 @@ author:
     email         : "https://learn.continue.yorku.ca/user/view.php?id=21444"  
   - name          : "Kate Alexander"
     affiliation   : "York University School of Continious Studies"
-    email         : "https://learn.continue.yorku.ca/user/view.php?id=21524"  
-  - name          : "Juan Arangote"
-    affiliation   : "York University School of Continious Studies"
-    email         : "https://learn.continue.yorku.ca/user/view.php?id=21472"  
-  - name          : "Dian Azbel"
+    email         : "https://learn.continue.yorku.ca/user/view.php?id=21524"    
+  - name          : "Diana Azbel"
     affiliation   : "York University School of Continious Studies"
     email         : "https://learn.continue.yorku.ca/user/view.php?id=20687"  
   - name          : "Igor Baranov"
     affiliation   : "York University School of Continious Studies"
     email         : "https://learn.continue.yorku.ca/user/profile.php?id=21219"  
 
-abstract: >
-  Nursery Database was derived from a hierarchical decision model originally developed to rank applications for nursery schools.Out task was to develop a classification model to develop a reliable recomendation algorithm to predict is a specific student is sutable to be addmitted to a nursing school.
+Abstract: >
+The speciﬁc problem under consideration is to rank selection of applicants for nursery schools in Ljubljana, Slovenia in the 1980's. 
+Nursery Database was derived from a hierarchical decision model originally developed to rank applications. A classification model has been used to developed a reliable recomendation algorithm to predict if a specific applicant is a suitable candidate to be addmitted into a nursery school. 
 
 output:
   rticles::rjournal_article:
@@ -30,40 +28,43 @@ output:
 # Introduction
 Malala Yousafzai once said, “Let us remember: One book, one pen, one child, and one teacher can change the world.” Education is important because it gives people the skills of basic literacy and numeracy, as well as the ability to communicate, complete tasks and work with others. 
 
-Early schooling such as Nursery school education matters most as it impacts children's long-term development and academic progress. While all children benefit from a high-quality nursery school, family and social structure may affect the enrollment process into these schools.
+Early schooling such as Nursery school education matters most as it impacts children's long-term development and academic progress. While all children benefit from a high-quality nursery school, family structure, social and financial standing, and proximity to schools may affect the enrollment process. 
 
-## Background
-
-Introductory section which may include references in parentheses
-\citep{R}, or cite a reference such as \citet{R} in the text.
-
-Nursery Data is described as ...Sed ut dui dui. Vestibulum vel velit at mauris auctor gravida condimentum porttitor metus. Integer tempus nunc ac sem pharetra volutpat. Fusce vitae eleifend leo. Ut vel tempor nibh. Proin eget fermentum leo. Mauris pharetra vitae sem eget dictum. Sed at neque vitae metus lobortis luctus. Morbi sapien diam, vulputate sed diam vitae, pharetra accumsan mauris. Curabitur pretium nulla turpis, porta porta odio tempor vitae. In vehicula volutpat dui et consequat. Nam id lorem molestie sapien ultrices elementum. In vehicula metus elit, nec rhoncus est efficitur et. Proin ex tellus, vestibulum a eros at, maximus euismod justo. 
-
+Nursery Database was derived from a hierarchical decision model originally developed to rank applications for nursery schools. It was used during several years in 1980's when there was excessive enrollment to these schools in Ljubljana, Slovenia, and the rejected applications frequently needed an objective explanation.
 Source: http://archive.ics.uci.edu/ml/datasets/Nursery
 
-```
-| class values
+## Background
+Ljubljana is the capital and largest city of Slovenia. The city, with an area of 163.8 square kilometers, is situated in the Ljubljana Basin in Central Slovenia, between the Alps and the Karst. Ljubljana is located some 320 kilometers south of Munich, 477 kilometers  east of Zürich. The population of the city in 1981 was 224,817 and of those inhabients, approximately 91% of the population speak Slovene as their primary native language. The second most-spoken language is Bosnian, with Serbo-Croatian being the third most-spoken language.
+Source: https://en.wikipedia.org/wiki/Ljubljana
 
-not_recom, recommend, very_recom, priority, spec_prior
-
-| attributes
-
-parents:     usual, pretentious, great_pret.
-has_nurs:    proper, less_proper, improper, critical, very_crit.
-form:        complete, completed, incomplete, foster.
-children:    1, 2, 3, more.
-housing:     convenient, less_conv, critical.
-finance:     convenient, inconv.
-social:      nonprob, slightly_prob, problematic.
-health:      recommended, priority, not_recom.
-```
+"New housing developments populated by young families, the demand for children’s admission in nursery schools outstrips supply,    notwithstanding the fast growth rate of new schools. This general problem was exempliﬁed in a particular Ljubljana district where    there were approximately 600 applicants for 300 spaces to be considered by the Acceptance Committee in the local nursery school each year."
+Source: http://kt.ijs.si/MarkoBohanec/pub/Nursery89.pdf
+M. Olave, V. Rajkovic, M. Bohanec: An application for admission in public school systems. In (I. Th. M. Snellen and W. B. H. J. van de Donk and J.-P. Baquiast, editors) Expert Systems in Public Administration, pages 145-160. Elsevier Science Publishers (North Holland), 1989.
 
 ## Objective and Hypothesis
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+The objective is to provide a reliable recommendation algorithm to predict if a specific applicant is a suitable candidate to be admitted into a nursery school or if the applicate should stay with the parents. The results of this recommendation may affect the child’s engagement within the school, parents’ involvement in activities and overall satisfaction of the applicants long-term academic progress.
 
+The most important decisions depended on three sub-problems: 
+  - Occupation of parents and child's nursery;
+  - Family structure and financial standing; 
+  - Social and health picture of the family. 
+  
 ## Assessment of Situation
-At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.
+The following tables present the input attributes description with their structure:
+
+##Table 1: Variables description
+
+##Table 2: Target variables description
+
+Number of Attributes: 8, Number of Instances: 12960
+
+From the data snapshot, 33% of nursery school application ended not being recommended because of multiple reasons. Some of the applications that were recommended came from parents having good health conditions (67%) and some applications have really good social conditions contributed by 33% of the parents nursery applications being recommended.
+
+##Frequency Table: Targeted variable
+
+##Frequency Table: Targeted variable vs attributes
+
 
 ## Plan
 Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod:
