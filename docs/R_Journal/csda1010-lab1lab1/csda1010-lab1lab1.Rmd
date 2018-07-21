@@ -126,7 +126,7 @@ dsum <- summary(nursery_data)
 xtable(dsum[,1:5], caption = "\\tt Summary of Nursery Data Dataset, columns 1-5", label = "table:dsum1")
 xtable(dsum[,6:9], caption = "\\tt Summary of Nursery Data Dataset, columns 6-9", label = "table:dsum2")
 ```
-Distribution of Class attribute presented in Figure2 \ref{fig:classd} shows the targeted varibles with five segments. The frequency of the segment "Recommend" is low (0.00015%) and will not be taken into consideration in the final dataset.
+Distribution of Class attribute presented in Figure2 \ref{fig:classd} shows the targeted variables with five segments. The frequency of the segment "Recommend" is low (0.00015%) and will not be taken into consideration in the final dataset.
 
 
 ```{r classd, fig.height=3, fig.width=5, fig.align="center", fig.cap="Distribution of Class attribute"}
@@ -145,7 +145,7 @@ ggplot(nursery_data,aes(x=factor(parents),fill=factor(class)))+
   geom_bar(position="dodge")
 ```
 
-The following code (Figure \ref{fig:classdh}) renders distribution of class attribute depending on 'health' attribute. Being healthy is most important and relevant for parents to have their nursery application being recommended. 
+The following code (Figure \ref{fig:classdh}) renders distribution of class attribute depending on 'health' attribute. Being healthy is most important and relevant for parents to have their nursery application being recommended. Parents having strong and good social situation are more likely to have their application being recommended.
 
 ```{r classdh, fig.height=3, fig.width=6, fig.align="center", fig.cap="Distribution of Class attribute depending on health"}
 nursery_data$health <- as.factor(nursery_data$health)
@@ -166,7 +166,7 @@ ggplot(nursery_data, aes(social, fill=class)) +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
 ```
-The following code (Figure \ref{fig:classdi}) renders distribution of 'class' attribute depending on 'nursery' attribute.
+The following code (Figure \ref{fig:classdi}) renders distribution of 'class' attribute depending on 'nursery' attribute. Parents in segments "Proper" and "less_Proper" appear to have similar distribution and their application taken as priority.
 
 ```{r classdn, fig.height=5, fig.width=6, fig.align="center", fig.cap="Distribution of Class attribute depending on nursery"}
 ggplot(nursery_data, aes(form, fill=class)) + 
