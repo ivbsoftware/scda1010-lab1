@@ -1,202 +1,258 @@
 % !TeX root = RJwrapper.tex
-\title{Ranking Applications for Nursery Schools}
-\author{by Viviane Adohouannon, Kate Alexander, Juan Arangote, Dian Azbel, Igor Baranov}
+\title{Ranking Applications for Nursery Schools Classification Problem}
+\author{by Viviane Adohouannon, Kate Alexander, Diana Azbel, Igor Baranov}
 
 \maketitle
 
-\abstract{%
-Nursery Database was derived from a hierarchical decision model
-originally developed to rank applications for nursery schools.Out task
-was to develop a classification model to develop a reliable
-recomendation algorithm to predict is a specific student is sutable to
-be addmitted to a nursing school.
-}
 
 % Any extra LaTeX you need in the preamble
 
 \hypertarget{introduction}{%
 \section{Introduction}\label{introduction}}
 
-This section may contain a figure such as Figure \ref{figure:rlogo}.
+Malala Yousafzai once said, Let us remember: One book, one pen, one
+child, and one teacher can change the world. Education is important
+because it gives people the skills of basic literacy and numeracy, as
+well as the ability to communicate, complete tasks and work with others.
 
-\begin{figure}[htbp]
-  \centering
-  \includegraphics{Rlogo}
-  \caption{The logo of R.}
-  \label{figure:rlogo}
-\end{figure}
+Early schooling such as Nursery school education matters most as it
+impacts children's long-term development and academic progress. While
+all children benefit from a high-quality nursery school, family
+structure, social and financial standing, and proximity to schools may
+affect the enrollment process.
+
+Nursery Database \citep{noauthor_uci_nodate} was derived from a
+hierarchical decision model originally developed to rank applications
+for nursery schools. It was used during several years in 1980's when
+there was excessive enrollment to these schools in Ljubljana, Slovenia,
+and the rejected applications frequently needed an objective
+explanation.
 
 \hypertarget{background}{%
 \subsection{Background}\label{background}}
 
-Introductory section which may include references in parentheses
-\citep{R}, or cite a reference such as \citet{R} in the text.
+Ljubljana is the capital and largest city of Slovenia. The city with an
+area of 163.8 square kilometers is situated in the Ljubljana Basin in
+Central Slovenia, between the Alps and the Karst. Ljubljana is located
+some 320 kilometers south of Munich, 477 kilometers east of ZÃ¼rich. In
+1981 the population of the city rose to 224,817 inhabients with
+approximately 91\% of the population speak Slovene as their primary
+native language. The second most-spoken language is Bosnian, with
+Serbo-Croatian being the third most-spoken language
+\citep{noauthor_ljubljana_2018}.
 
-Nursery Data is described as \ldots{}Sed ut dui dui. Vestibulum vel
-velit at mauris auctor gravida condimentum porttitor metus. Integer
-tempus nunc ac sem pharetra volutpat. Fusce vitae eleifend leo. Ut vel
-tempor nibh. Proin eget fermentum leo. Mauris pharetra vitae sem eget
-dictum. Sed at neque vitae metus lobortis luctus. Morbi sapien diam,
-vulputate sed diam vitae, pharetra accumsan mauris. Curabitur pretium
-nulla turpis, porta porta odio tempor vitae. In vehicula volutpat dui et
-consequat. Nam id lorem molestie sapien ultrices elementum. In vehicula
-metus elit, nec rhoncus est efficitur et. Proin ex tellus, vestibulum a
-eros at, maximus euismod justo.
+During this time according to \citep{olave1989application} ``new housing
+developments populated by young families, the demand for childrens
+admission in nursery schools outstrips supply, notwithstanding the fast
+growth rate of new schools.'' In this research, conducted in 1989, an
+application of expert systems for admission procedures in public school
+systems was presented. The specific problem under consideration was
+selection of applicants for public nursery schools. The selection was
+supported by an expert system which evaluates, classifies and ranks
+applications. The main emphasis was on explanation of the underlying
+knowledge and solutions, suggested by the system. The system has been
+developed using DECMAK, an expert system shell for multi-attribute
+decision making.
 
-Source: \url{http://archive.ics.uci.edu/ml/datasets/Nursery}
+In continuation of the search for the practical solution of the problem,
+second most relevant research was conducted in 1997
+\citep{zupan1997machine}. It presented another machine learning method
+that, given a set of training examples, induced a definition of the
+target concept in terms of a hierarchy of intermediate concepts and
+their definitions. This effectively decomposed the problem into smaller,
+less complex problems. The method was inspired by the Boolean function
+decomposition approach to the design of digital circuits. To cope with
+high time complexity of inding an optimal decomposition, the authors
+proposed a suboptimal heuristic algorithm.
 
-\begin{verbatim}
-| class values
+It worth to notice that in both cases the researches concentrated on
+designing and teoretical evaluation of mentioned algorithms without
+proposing a practical solution that could be deployed in the
+municipalities and put in use. The reason of this was a relatively high
+at the time price of computers that could make predictictions with the
+models proposed.
 
-not_recom, recommend, very_recom, priority, spec_prior
+\hypertarget{objective}{%
+\subsection{Objective}\label{objective}}
 
-| attributes
-
-parents:     usual, pretentious, great_pret.
-has_nurs:    proper, less_proper, improper, critical, very_crit.
-form:        complete, completed, incomplete, foster.
-children:    1, 2, 3, more.
-housing:     convenient, less_conv, critical.
-finance:     convenient, inconv.
-social:      nonprob, slightly_prob, problematic.
-health:      recommended, priority, not_recom.
-\end{verbatim}
-
-\hypertarget{objective-and-hypothesis}{%
-\subsection{Objective and Hypothesis}\label{objective-and-hypothesis}}
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-mollit anim id est laborum.
-
-\hypertarget{assessment-of-situation}{%
-\subsection{Assessment of Situation}\label{assessment-of-situation}}
-
-At vero eos et accusamus et iusto odio dignissimos ducimus qui
-blanditiis praesentium voluptatum deleniti atque corrupti quos dolores
-et quas molestias excepturi sint occaecati cupiditate non provident,
-similique sunt in culpa qui officia deserunt mollitia animi, id est
-laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita
-distinctio. Nam libero tempore, cum soluta nobis est eligendi optio
-cumque nihil impedit quo minus id quod maxime placeat facere possimus,
-omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem
-quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet
-ut et voluptates repudiandae sint et molestiae non recusandae.
+The objective of this article is to provide a reliable and feasible
+recommendation algorithm to predict if a specific applicant is a
+suitable candidate to be admitted into a nursery school or if the
+applicant should stay with their parents. The results of this
+recommendation may affect the childs engagement within the school,
+parents involvement in school activities and overall satisfaction of the
+applicants long-term academic progress.
 
 \hypertarget{plan}{%
 \subsection{Plan}\label{plan}}
 
-Et harum quidem rerum facilis est et expedita distinctio. Nam libero
-tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo
-minus id quod:
+To solve the objective a group of four students calling themselves The
+First Group (T.F.G) from York University School of Continuing Studies,
+have come together to create an algorithm using the Nursery dataset.
+Since the target of this problem is a categorical value representing
+recommendation if a child is sutable for the addmitted to a nursery
+school, a supervised classification algorithm was chosen
+\citep{witten_data_2011}.
 
-\begin{itemize}
-\tightlist
-\item
-  Cras sit amet lacus luctus massa lobortis sagittis.
-\item
-  Curabitur convallis nisi non fringilla mattis.
-\item
-  Etiam auctor massa nec orci hendrerit convallis.
-\item
-  Nunc et tortor eu nisl gravida tempor a a lorem.
-\item
-  Morbi sit amet sem posuere, aliquam ex ut, lacinia nulla.
-\end{itemize}
+The main tool used in developing the recomendation algorithm is R
+\citep{R}. The R language is widely used among statisticians and data
+miners for developing statistical software and data analysis.
 
 \hypertarget{data-understanding}{%
 \section{Data understanding}\label{data-understanding}}
 
-Harum quidem rerum facilis est et expedita distinctio. Nam libero
-tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo
-minus id quod.
+The dataset \citep{noauthor_uci_nodate} has 8 attributes and 12960
+instances. Creators of the dataset suggested hierarchical model ranks
+nursery-school applications according to the following concept
+structure:
+
+\begin{verbatim}
+NURSERY Evaluation of applications for nursery schools 
+. EMPLOY Employment of parents and child's nursery 
+. . parents Parents' occupation 
+. . has_nurs Child's nursery 
+. STRUCT_FINAN Family structure and financial standings 
+. . STRUCTURE Family structure 
+. . . form Form of the family 
+. . . children Number of children 
+. . housing Housing conditions 
+. . finance Financial standing of the family 
+. SOC_HEALTH Social and health picture of the family 
+. . social Social conditions 
+. . health Health conditions 
+\end{verbatim}
+
+Nursery Database contains examples with the structural information
+removed, i.e., directly relates NURSERY to the eight input attributes:
+parents, has\_nurs, form, children, housing, finance, social, health.
+Data set attribes presented in the following form:
+
+\begin{verbatim}
+parents: usual, pretentious, great_pret 
+has_nurs: proper, less_proper, improper, critical, very_crit 
+form: complete, completed, incomplete, foster 
+children: 1, 2, 3, more 
+housing: convenient, less_conv, critical 
+finance: convenient, inconv 
+social: non-prob, slightly_prob, problematic 
+health: recommended, priority, not_recom
+\end{verbatim}
+
+Target attribute called ``class'' is a categorical variable having
+several values that were not revealed in original dataset description
+and had to be extracted from the data.
 
 \hypertarget{preparation}{%
 \subsection{Preparation}\label{preparation}}
 
+To perform the analysys, certain R libraries were used. Code below was
+used to load and initialize the libraries. The first line invoking seed
+function was applied to enforce the repeteability of the calculation
+results.
+
+\begin{Schunk}
+\begin{Sinput}
+set.seed(42)
+library(ggplot2)
+library(rpart)
+library(rpart.plot)
+library(rattle)
+library(caret)
+\end{Sinput}
+\end{Schunk}
+
+The dataset was loaded directly from the dataset site
+\citep{noauthor_uci_nodate} using the R statement below. Note that we
+assigned column names since the online data didn't have the header. To
+pretty-print the head of the dataset xtable \citep{R-xtable} library was
+used to generate Table \ref{table:dhead10}.
+
+\begin{Schunk}
+\begin{Sinput}
+library(readr)
+nursery_data <- 
+  read.csv("http://archive.ics.uci.edu/ml/machine-learning-databases/nursery/nursery.data", 
+  header = FALSE, 
+  col.names = c("parents","has_nurs","form", "children","housing","finance",
+                "social","health","class"))
+\end{Sinput}
+\end{Schunk}
+
 \begin{table}[ht]
 \centering
 \scalebox{0.75}{
-\begin{tabular}{rrlllllllll}
+\begin{tabular}{rlllllllll}
   \hline
- & X & parents & has\_nurs & form & children & housing & finance & social & health & class \\ 
+ & parents & has\_nurs & form & children & housing & finance & social & health & class \\ 
   \hline
-1 &   1 & usual & proper & complete & 1 & convenient & convenient & nonprob & recommended & recommend \\ 
-  2 &   2 & usual & proper & complete & 1 & convenient & convenient & nonprob & priority & priority \\ 
-  3 &   3 & usual & proper & complete & 1 & convenient & convenient & nonprob & not\_recom & not\_recom \\ 
-  4 &   4 & usual & proper & complete & 1 & convenient & convenient & slightly\_prob & recommended & recommend \\ 
-  5 &   5 & usual & proper & complete & 1 & convenient & convenient & slightly\_prob & priority & priority \\ 
-  6 &   6 & usual & proper & complete & 1 & convenient & convenient & slightly\_prob & not\_recom & not\_recom \\ 
-  7 &   7 & usual & proper & complete & 1 & convenient & convenient & problematic & recommended & priority \\ 
-  8 &   8 & usual & proper & complete & 1 & convenient & convenient & problematic & priority & priority \\ 
-  9 &   9 & usual & proper & complete & 1 & convenient & convenient & problematic & not\_recom & not\_recom \\ 
-  10 &  10 & usual & proper & complete & 1 & convenient & inconv & nonprob & recommended & very\_recom \\ 
+1 & usual & proper & complete & 1 & convenient & convenient & nonprob & recommended & recommend \\ 
+  2 & usual & proper & complete & 1 & convenient & convenient & nonprob & priority & priority \\ 
+  3 & usual & proper & complete & 1 & convenient & convenient & nonprob & not\_recom & not\_recom \\ 
+  4 & usual & proper & complete & 1 & convenient & convenient & slightly\_prob & recommended & recommend \\ 
+  5 & usual & proper & complete & 1 & convenient & convenient & slightly\_prob & priority & priority \\ 
+  6 & usual & proper & complete & 1 & convenient & convenient & slightly\_prob & not\_recom & not\_recom \\ 
+  7 & usual & proper & complete & 1 & convenient & convenient & problematic & recommended & priority \\ 
+  8 & usual & proper & complete & 1 & convenient & convenient & problematic & priority & priority \\ 
+  9 & usual & proper & complete & 1 & convenient & convenient & problematic & not\_recom & not\_recom \\ 
+  10 & usual & proper & complete & 1 & convenient & inconv & nonprob & recommended & very\_recom \\ 
    \hline
 \end{tabular}
 }
 \caption{\tt Nursery Data Dataset (head)} 
+\label{table:dhead10}
 \end{table}
 
-Summary of Nursery Data set is extracted by the folloving `summary'
-function, the results are presented in Table \ref{table:dsum1} and Table
-\ref{table:dsum2}.
+Summary of Nursery Data set is extracted by the R summary function, the
+results are presented below.
 
-We can conclude that: consectetur adipiscing elit. Aenean magna urna,
-sodales vel blandit sed, condimentum sit amet ante. Phasellus pulvinar
-ullamcorper porttitor. Cras vitae ipsum in magna condimentum malesuada
-ut at massa. Duis quis quam faucibus, euismod lacus sit amet,
-scelerisque odio.
+\begin{Schunk}
+\begin{Sinput}
+summary(nursery_data)
+\end{Sinput}
+\begin{Soutput}
+#>         parents            has_nurs            form      children   
+#>  great_pret :4320   critical   :2592   complete  :3240   1   :3240  
+#>  pretentious:4320   improper   :2592   completed :3240   2   :3240  
+#>  usual      :4320   less_proper:2592   foster    :3240   3   :3240  
+#>                     proper     :2592   incomplete:3240   more:3240  
+#>                     very_crit  :2592                                
+#>        housing           finance               social    
+#>  convenient:4320   convenient:6480   nonprob      :4320  
+#>  critical  :4320   inconv    :6480   problematic  :4320  
+#>  less_conv :4320                     slightly_prob:4320  
+#>                                                          
+#>                                                          
+#>          health            class     
+#>  not_recom  :4320   not_recom :4320  
+#>  priority   :4320   priority  :4266  
+#>  recommended:4320   recommend :   2  
+#>                     spec_prior:4044  
+#>                     very_recom: 328
+\end{Soutput}
+\end{Schunk}
 
-\begin{table}[ht]
-\centering
-\begin{tabular}{rlllll}
-  \hline
- &       X &        parents &        has\_nurs &         form & children \\ 
-  \hline
-X & Min.   :    1   & great\_pret :4320   & critical   :2592   & complete  :3240   & 1   :3240   \\ 
-  X.1 & 1st Qu.: 3241   & pretentious:4320   & improper   :2592   & completed :3240   & 2   :3240   \\ 
-  X.2 & Median : 6480   & usual      :4320   & less\_proper:2592   & foster    :3240   & 3   :3240   \\ 
-  X.3 & Mean   : 6480   &  & proper     :2592   & incomplete:3240   & more:3240   \\ 
-  X.4 & 3rd Qu.: 9720   &  & very\_crit  :2592   &  &  \\ 
-  X.5 & Max.   :12960   &  &  &  &  \\ 
-   \hline
-\end{tabular}
-\caption{\tt Summary of Nursery Data Dataset, columns 1-5} 
-\label{table:dsum1}
-\end{table}
-\begin{table}[ht]
-\centering
-\begin{tabular}{rllll}
-  \hline
- &       housing &       finance &           social &         health \\ 
-  \hline
-X & convenient:4320   & convenient:6480   & nonprob      :4320   & not\_recom  :4320   \\ 
-  X.1 & critical  :4320   & inconv    :6480   & problematic  :4320   & priority   :4320   \\ 
-  X.2 & less\_conv :4320   &  & slightly\_prob:4320   & recommended:4320   \\ 
-  X.3 &  &  &  &  \\ 
-  X.4 &  &  &  &  \\ 
-  X.5 &  &  &  &  \\ 
-   \hline
-\end{tabular}
-\caption{\tt Summary of Nursery Data Dataset, columns 6-9} 
-\label{table:dsum2}
-\end{table}
+Taking quick look at the summary we noticed that target attribute
+`class' is presented in the dataset by 5 values that look like logically
+go in the order of recommendation strength:
 
-Distribution of Class attribute presented in Figure \ref{fig:classd}.
-Morbi volutpat augue vitae porta lobortis. Integer sit amet neque vel
-risus aliquam scelerisque et eget est. Cras maximus ex nec pharetra
-dictum. Vivamus vehicula ante sodales massa rhoncus, et blandit tortor
-interdum. Pellentesque aliquam ligula eu justo porttitor, non fringilla
-erat vehicula. Pellentesque et dolor non nunc aliquet euismod. Vivamus
-vel malesuada lorem. Fusce eget mauris a nulla sollicitudin eleifend eu
-auctor ligula. Sed nec dictum lorem. Vestibulum bibendum ultrices lorem,
-id fermentum felis tincidunt eu. Curabitur ipsum justo, dictum id
-finibus vitae, pulvinar non tortor. Curabitur vel mi a urna gravida
-commodo vitae vel libero. Maecenas imperdiet sed diam eget viverra.
+\begin{itemize}
+\tightlist
+\item
+  not\_recom
+\item
+  recommend
+\item
+  very\_recom
+\item
+  priority
+\item
+  special\_prior
+\end{itemize}
+
+Note that `recommend' value is presented in the dataset by only 2 rows.
+Let's look at the distribution of values. The frequency of the segment
+``Recommend'' is low (0.00015\%) and will not be have effect on the
+results of prediction algorithms.
 
 \begin{Schunk}
 \begin{Sinput}
@@ -207,14 +263,21 @@ prop.table((table(nursery_data$class)))
 #>   not_recom    priority   recommend  spec_prior  very_recom 
 #> 0.333333333 0.329166667 0.000154321 0.312037037 0.025308642
 \end{Soutput}
+\end{Schunk}
+
+The following code that uses graphical R ggplot library
+\citep{R-ggplot2} gererates a graphical presentation of this
+distribution.
+
+\begin{Schunk}
 \begin{Sinput}
-ggplot(nursery_data, aes(x=as.factor(class) )) + 
+ggplot(nursery_data, aes(x=class)) + 
   geom_bar(aes(y= (..count..)/sum(..count..)),color="blue",fill=rgb(0.2,0,0.5)) +
   theme(legend.position = "none") +
   scale_y_continuous(labels=scales:::percent) +
   labs(x = "class",y="total")
 \end{Sinput}
-\begin{figure}
+\begin{figure}[h]
 
 {\centering \includegraphics{csda1010-lab1lab1_files/figure-latex/classd-1} 
 
@@ -224,22 +287,28 @@ ggplot(nursery_data, aes(x=as.factor(class) )) +
 \end{figure}
 \end{Schunk}
 
-The following code (Figure \ref{fig:classdp}) renders distribution of
-class attribute depending on parents attribute. Pellentesque aliquam
-ligula eu justo porttitor, non fringilla erat vehicula. Pellentesque et
-dolor non nunc aliquet euismod. Vivamus vel malesuada lorem. Fusce eget
-mauris a nulla sollicitudin eleifend eu auctor ligula. Sed nec dictum
-lorem. Vestibulum bibendum ultrices lorem, id fermentum felis tincidunt
-eu. Curabitur ipsum justo, dictum id finibus vitae, pulvinar non tortor.
-Curabitur vel mi a urna gravida commodo vitae vel libero. Maecenas
-imperdiet sed diam eget viverra.
+Figure \ref{fig:classd} shows the targeted attribute with five segments.
+From the data snapshot, 33\% of nursery school applications ended not
+being recommended. As expected, `recommend' value has almost no visible
+presentation. It worth to notice that presentation of `very\_recom'
+value is also very low in the dataset and almost 10 times lower than
+other values. This might be an issue that could affect the accuracy of
+the model and most likely will have to be taken care of later. We can
+also conclude that there is no missing information and dataset is in
+good standing to be used.
+
+The following code rendered to (Figure \ref{fig:classdp}) shows
+distribution of class attribute depending on parents attribute. From
+this graph, it clearly shows that priority and recommendation are given
+to application from `pretentious' parents while recommending kids with
+usual parents to stay homet.
 
 \begin{Schunk}
 \begin{Sinput}
-ggplot(nursery_data,aes(x=factor(parents),fill=factor(class)))+
+ggplot(nursery_data,aes(x=class, fill=parents))+
   geom_bar(position="dodge")
 \end{Sinput}
-\begin{figure}
+\begin{figure}[h]
 
 {\centering \includegraphics{csda1010-lab1lab1_files/figure-latex/classdp-1} 
 
@@ -249,15 +318,12 @@ ggplot(nursery_data,aes(x=factor(parents),fill=factor(class)))+
 \end{figure}
 \end{Schunk}
 
-The following code (Figure \ref{fig:classdh}) renders distribution of
-class attribute depending on `health' attribute. Pellentesque aliquam
-ligula eu justo porttitor, non fringilla erat vehicula. Pellentesque et
-dolor non nunc aliquet euismod. Vivamus vel malesuada lorem. Fusce eget
-mauris a nulla sollicitudin eleifend eu auctor ligula. Sed nec dictum
-lorem. Vestibulum bibendum ultrices lorem, id fermentum felis tincidunt
-eu. Curabitur ipsum justo, dictum id finibus vitae, pulvinar non tortor.
-Curabitur vel mi a urna gravida commodo vitae vel libero. Maecenas
-imperdiet sed diam eget viverra.
+The following code rendered to (Figure \ref{fig:classdh}) shows
+distribution of class attribute depending on child `health' attribute.
+Being healthy is most important and relevant for parents to have their
+nursery application being recommended. Parents having strong and good
+social situation are more likely to have their application being
+recommended.
 
 \begin{Schunk}
 \begin{Sinput}
@@ -265,7 +331,7 @@ nursery_data$health <- as.factor(nursery_data$health)
 ggplot(data = nursery_data, mapping = aes(x = class, fill = health)) +
   geom_bar()
 \end{Sinput}
-\begin{figure}
+\begin{figure}[h]
 
 {\centering \includegraphics{csda1010-lab1lab1_files/figure-latex/classdh-1} 
 
@@ -275,19 +341,13 @@ ggplot(data = nursery_data, mapping = aes(x = class, fill = health)) +
 \end{figure}
 \end{Schunk}
 
-The following code (Figure \ref{fig:classdi}) renders distribution of
-class attribute depending on `'social' attribute. Pellentesque aliquam
-ligula eu justo porttitor, non fringilla erat vehicula. Pellentesque et
-dolor non nunc aliquet euismod. Vivamus vel malesuada lorem. Fusce eget
-mauris a nulla sollicitudin eleifend eu auctor ligula. Sed nec dictum
-lorem. Vestibulum bibendum ultrices lorem, id fermentum felis tincidunt
-eu. Curabitur ipsum justo, dictum id finibus vitae, pulvinar non tortor.
-Curabitur vel mi a urna gravida commodo vitae vel libero. Maecenas
-imperdiet sed diam eget viverra.
+To analyze distribution of class attribute depending on `social' and
+`parents' attributes the following code renders (Figure
+\ref{fig:classdi}).
 
 \begin{Schunk}
 \begin{Sinput}
-ggplot(nursery_data, aes(social, fill=class)) + 
+ggplot(nursery_data, aes(class, fill=social)) + 
   geom_bar(aes(y = (..count..)/sum(..count..)), alpha=0.9) +
   facet_wrap(~parents) + 
   scale_fill_brewer(palette = "Dark2", direction = -1) +
@@ -297,7 +357,7 @@ ggplot(nursery_data, aes(social, fill=class)) +
   theme(plot.title = element_text(hjust = 0.5)) +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 \end{Sinput}
-\begin{figure}
+\begin{figure}[h]
 
 {\centering \includegraphics{csda1010-lab1lab1_files/figure-latex/classdi-1} 
 
@@ -307,19 +367,14 @@ ggplot(nursery_data, aes(social, fill=class)) +
 \end{figure}
 \end{Schunk}
 
-The following code (Figure \ref{fig:classdi}) renders distribution of
-`class' attribute depending on `nursery' attribute. Pellentesque aliquam
-ligula eu justo porttitor, non fringilla erat vehicula. Pellentesque et
-dolor non nunc aliquet euismod. Vivamus vel malesuada lorem. Fusce eget
-mauris a nulla sollicitudin eleifend eu auctor ligula. Sed nec dictum
-lorem. Vestibulum bibendum ultrices lorem, id fermentum felis tincidunt
-eu. Curabitur ipsum justo, dictum id finibus vitae, pulvinar non tortor.
-Curabitur vel mi a urna gravida commodo vitae vel libero. Maecenas
-imperdiet sed diam eget viverra.
+The following code (Figure \ref{fig:classdn}) renders distribution of
+`class' attribute depending on `has\_nurs' and `form' attribute. Parents
+in segments ``proper'' and ``less\_proper'' appear to have similar
+distribution and their application taken as priority.
 
 \begin{Schunk}
 \begin{Sinput}
-ggplot(nursery_data, aes(form, fill=class)) + 
+ggplot(nursery_data, aes(class, fill=form)) + 
   geom_bar(aes(y = (..count..)/sum(..count..)), alpha=0.9) +
   facet_wrap(~has_nurs) + 
   scale_fill_brewer(palette = "Dark2", direction = -1) +
@@ -329,23 +384,20 @@ ggplot(nursery_data, aes(form, fill=class)) +
   theme(plot.title = element_text(hjust = 0.5)) +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 \end{Sinput}
-\begin{figure}
+\begin{figure}[h]
 
-{\centering \includegraphics{csda1010-lab1lab1_files/figure-latex/classdn-1} 
-
-}
+\includegraphics{csda1010-lab1lab1_files/figure-latex/classdn-1} \hfill{}
 
 \caption[Distribution of Class attribute depending on nursery]{Distribution of Class attribute depending on nursery}\label{fig:classdn}
 \end{figure}
 \end{Schunk}
 
-The conclusion is: aliquam ligula eu justo porttitor, non fringilla erat
-vehicula. Pellentesque et dolor non nunc aliquet euismod. Vivamus vel
-malesuada lorem. Fusce eget mauris a nulla sollicitudin eleifend eu
-auctor ligula. Sed nec dictum lorem. Vestibulum bibendum ultrices lorem,
-id fermentum felis tincidunt eu. Curabitur ipsum justo, dictum id
-finibus vitae, pulvinar non tortor. Curabitur vel mi a urna gravida
-commodo vitae vel libero. Maecenas imperdiet sed diam eget viverra.
+Te analysys of interdependance of differentattributes and their
+influence on the target ``class'' attribute does not give as a clear
+picture of the importance of those attributes. The exclusion is the
+`health' attribute that seems to have a visible correlation with the
+target. The more sofisticated nethods should be applied to evaluate the
+attribute importance.
 
 \hypertarget{modeling}{%
 \section{Modeling}\label{modeling}}
@@ -354,19 +406,22 @@ commodo vitae vel libero. Maecenas imperdiet sed diam eget viverra.
 \subsection{Splitting the dataset into train and
 test}\label{splitting-the-dataset-into-train-and-test}}
 
-We are splitting the dataset in such a way, that train and test sets
-would have similar distribution of the `class' attribute.
+The Nursery dataset has been split in such a way that train and test
+sets would have the same distribution of the `class' attribute. The
+reason for this stratification strategy is to focus on the priority of
+an applicants placement in a nursery school rather than an applicants
+family or social status. We used 75:25 split ratio.
 
 \begin{Schunk}
 \begin{Sinput}
-train.rows<- createDataPartition(y= nursery_data$class, p=0.9, list = FALSE)
+train.rows<- createDataPartition(y= nursery_data$class, p=0.75, list = FALSE)
 train.data<- nursery_data[train.rows,]
 prop.table((table(train.data$class)))
 \end{Sinput}
 \begin{Soutput}
 #> 
 #>    not_recom     priority    recommend   spec_prior   very_recom 
-#> 0.3332761872 0.3291616664 0.0001714384 0.3120178296 0.0253728785
+#> 0.3332990433 0.3291842403 0.0002057402 0.3120049378 0.0253060385
 \end{Soutput}
 \end{Schunk}
 
@@ -378,19 +433,13 @@ prop.table((table(test.data$class)))
 \begin{Soutput}
 #> 
 #>  not_recom   priority  recommend spec_prior very_recom 
-#> 0.33384853 0.32921175 0.00000000 0.31221020 0.02472952
+#> 0.33343625 0.32911392 0.00000000 0.31213337 0.02531646
 \end{Soutput}
 \end{Schunk}
 
-The following code (Figure \ref{fig:testd}) renders distribution of
-`class' attribute depending on `nursery' attribute. Pellentesque aliquam
-ligula eu justo porttitor, non fringilla erat vehicula. Pellentesque et
-dolor non nunc aliquet euismod. Vivamus vel malesuada lorem. Fusce eget
-mauris a nulla sollicitudin eleifend eu auctor ligula. Sed nec dictum
-lorem. Vestibulum bibendum ultrices lorem, id fermentum felis tincidunt
-eu. Curabitur ipsum justo, dictum id finibus vitae, pulvinar non tortor.
-Curabitur vel mi a urna gravida commodo vitae vel libero. Maecenas
-imperdiet sed diam eget viverra.
+The code below (Figure \ref{fig:testd}) renders distribution of `class'
+attribute depending on `nursery' attribute. Not suprisingly, the test
+set did not get any of rows with ``recommend'' class attribute.
 
 \begin{Schunk}
 \begin{Sinput}
@@ -399,7 +448,7 @@ ggplot(test.data, aes(x=as.factor(class))) +
   color="red", fill=rgb(0.9,1,0.7) )+theme(legend.position = "none") + 
   labs(x = "class",y="total")+scale_y_continuous(labels=scales:::percent)
 \end{Sinput}
-\begin{figure}
+\begin{figure}[h]
 
 {\centering \includegraphics{csda1010-lab1lab1_files/figure-latex/testd-1} 
 
@@ -412,22 +461,20 @@ ggplot(test.data, aes(x=as.factor(class))) +
 \hypertarget{decision-tree-model-fit}{%
 \subsection{Decision Tree model fit}\label{decision-tree-model-fit}}
 
-As a first step we will train a Desigion Tree model. This model is known
-to be computationally fast, but not very precise. We will use all
-default parameters and all attributes of thetrain dataset. Resuling tree
-is presented in Figure \ref{fig:dtree}. It shows that Fusce eget mauris
-a nulla sollicitudin eleifend eu auctor ligula. Sed nec dictum lorem.
-Vestibulum bibendum ultrices lorem, id fermentum felis tincidunt eu.
-Curabitur ipsum justo, dictum id finibus vitae, pulvinar non tortor.
-Curabitur vel mi a urna gravida commodo vitae vel libero. Maecenas
-imperdiet sed diam eget viverra.
+As a first step we have used a Decision Tree model \citep{R-rpart}.
+Though this model is known to be computationally fast but not very
+precise, we have use all default parameters and all attributes of the
+train dataset in the resulting Decision Tree presented in Figure
+\ref{fig:dtree}.
 
 \begin{Schunk}
 \begin{Sinput}
-fitdt <- rpart(as.factor(class)~., method="class", data=train.data)
-fancyRpartPlot(fitdt, main = "", sub = "")
+fitdt <- rpart(
+  as.factor(class)~parents+has_nurs+form+children+housing+finance+social+health,
+  method="class", data=train.data)
+fancyRpartPlot(fitdt, main="", sub="")
 \end{Sinput}
-\begin{figure}
+\begin{figure}[h]
 
 {\centering \includegraphics{csda1010-lab1lab1_files/figure-latex/dtree-1} 
 
@@ -440,6 +487,12 @@ fancyRpartPlot(fitdt, main = "", sub = "")
 \hypertarget{decision-tree-model-evaluation}{%
 \subsection{Decision Tree model
 evaluation}\label{decision-tree-model-evaluation}}
+
+This tree favorits the following attributes in order of their importance
+for the prediction of the target attribute: health, has\_nurs, parents.
+It does not consider the rest of the attributes as important. Let's
+apply the model to the test set and evaluate accuracy of the
+predictions.
 
 \begin{Schunk}
 \begin{Sinput}
@@ -455,10 +508,10 @@ confMat
 \begin{Soutput}
 #>             
 #> dtPrediction not_recom priority recommend spec_prior very_recom
-#>   not_recom        432        0         0          0          0
-#>   priority           0      325         0         11         32
+#>   not_recom       1080        0         0          0          0
+#>   priority           0      836         0         96         82
 #>   recommend          0        0         0          0          0
-#>   spec_prior         0      101         0        393          0
+#>   spec_prior         0      230         0        915          0
 #>   very_recom         0        0         0          0          0
 \end{Soutput}
 \begin{Sinput}
@@ -467,38 +520,35 @@ cat(sprintf("\nAccuracy=%f", accuracy))
 \end{Sinput}
 \begin{Soutput}
 #> 
-#> Accuracy=0.888717
+#> Accuracy=0.874035
 \end{Soutput}
 \end{Schunk}
+
+As we can see, the models predicted all ``not\_recom'' values correctly,
+wrongly predicted all ``very\_recom'' values and had partial success
+predicting ``priority and''special\_priority" values. The overall
+accuracy is 87\%, but the model is not precise and not usable.
 
 \hypertarget{random-forest-model-fit}{%
 \subsection{Random Forest model fit}\label{random-forest-model-fit}}
 
+Next step is to use more advanced but more computationally demanding
+Random Forest method \citep{R-randomForest}:
+
 \begin{Schunk}
 \begin{Sinput}
 library(randomForest)
-fitRF1 <- randomForest(as.factor(class)~.,
-                      data=train.data, 
-                      importance=TRUE, 
-                      ntree=1000)
+fitRF1 <- randomForest(
+  as.factor(class)~parents+has_nurs+form+children+housing+finance+social+health,
+  data=train.data, importance=TRUE, ntree=1000)
 \end{Sinput}
 \end{Schunk}
-
-Importance of the dataset attributes for the prediction of the `class'
-attribute shown in Figure \ref{fig:forimp}. Nam libero tempore, cum
-soluta nobis est eligendi optio cumque nihil impedit quo minus id quod
-maxime placeat facere possimus, omnis voluptas assumenda est, omnis
-dolor repellendus. Temporibus autem quibusdam et aut officiis debitis
-aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint
-et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente
-delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut
-perferendis doloribus asperiores repellat.
 
 \begin{Schunk}
 \begin{Sinput}
 varImpPlot(fitRF1, main="")
 \end{Sinput}
-\begin{figure}
+\begin{figure}[h]
 
 {\centering \includegraphics{csda1010-lab1lab1_files/figure-latex/forimp-1} 
 
@@ -508,6 +558,18 @@ varImpPlot(fitRF1, main="")
 \end{figure}
 \end{Schunk}
 
+Importance of the dataset attributes for the prediction of the
+``class''" attribute shown in Figure \ref{fig:forimp}. Analyzing this
+chart we conclude that the proper order of attributes importance for the
+prediction of the target attribute is health, has\_nurs, parents,
+housing, social, children. The rest two attributes are less important.
+This contradicts the original analysys \citep{noauthor_uci_nodate} were
+they assumed that parents and finance are the most important attributes
+and health is the least. The only way to solve this dilema is to
+calculate accuracy of our model.
+
+\newpage
+
 \hypertarget{random-forest-model-prediction-and-evaluation}{%
 \subsection{Random Forest model prediction and
 evaluation}\label{random-forest-model-prediction-and-evaluation}}
@@ -515,13 +577,7 @@ evaluation}\label{random-forest-model-prediction-and-evaluation}}
 \begin{Schunk}
 \begin{Sinput}
 PredictionRF1 <- predict(fitRF1, test.data)
-head(PredictionRF1)
 \end{Sinput}
-\begin{Soutput}
-#>         7         9        33        48        53        60 
-#>  priority not_recom not_recom not_recom  priority not_recom 
-#> Levels: not_recom priority recommend spec_prior very_recom
-\end{Soutput}
 \end{Schunk}
 
 \begin{Schunk}
@@ -532,11 +588,11 @@ confMat
 \begin{Soutput}
 #>              
 #> PredictionRF1 not_recom priority recommend spec_prior very_recom
-#>    not_recom        432        0         0          0          0
-#>    priority           0      425         0          0          0
+#>    not_recom       1080        0         0          0          0
+#>    priority           0     1046         0         14         37
 #>    recommend          0        0         0          0          0
-#>    spec_prior         0        1         0        404          0
-#>    very_recom         0        0         0          0         32
+#>    spec_prior         0       20         0        997          0
+#>    very_recom         0        0         0          0         45
 \end{Soutput}
 \begin{Sinput}
 accuracy <- sum(diag(confMat))/sum(confMat)
@@ -544,73 +600,157 @@ cat(sprintf("\nAccuracy=%f", accuracy))
 \end{Sinput}
 \begin{Soutput}
 #> 
-#> Accuracy=0.999227
+#> Accuracy=0.978080
 \end{Soutput}
 \end{Schunk}
 
-\hypertarget{dicsussion}{%
-\section{Dicsussion}\label{dicsussion}}
+The models predicted ``not\_recom'' values correctly, ``priority''" and
+``special\_priority'' values were predicted with about 90\% accuracy. As
+expected, ``very\_recom'' value was predicted poorly - with almost 40\%
+error. The overall accuracy is much better at 97.8\%, but the model is
+still not precise and not usable.
 
-Nor again is there anyone who loves or pursues or desires to obtain pain
-of itself, because it is pain, but because occasionally circumstances
-occur in which toil and pain can procure him some great pleasure. To
-take a trivial example, which of us ever undertakes laborious physical
-exercise, except to obtain some advantage from it? But who has any right
-to find fault with a man who chooses to enjoy a pleasure that has no
-annoying consequences, or one who avoids a pain that produces no
-resultant pleasure?"
+\newpage
+
+\hypertarget{imballanced-classification-correction}{%
+\subsection{Imballanced Classification
+Correction}\label{imballanced-classification-correction}}
+
+To improve the precision of the model we need to take care of the
+imballanced distribution of rows with target value ``very\_recom''.
+There are several technics to correct the problem of low accuracy in
+regards of predicting ``very\_recom'' value of target attribute
+``class'' \citep{noauthor_how_2017}. One particular method that we
+decided to employ is method called Random Over-Sampling, which increases
+the number of instances in the minority class by randomly replicating
+them in order to present a higher representation of the minority class
+in the sample. This method leads to no information loss, but increases
+the likelihood of overfitting since it replicates the minority class
+events. To decrease the latter, we will apply this technique only to
+train data. As you can see from the output of the code below the portion
+of ``very\_recom'' value of the ``class'' attribute in new train2.data
+dataset is now about 40\% of the rest of the values (excluding
+``recommend'' of course).
+
+\begin{Schunk}
+\begin{Sinput}
+vr <- train.data[train.data[,"class"] == "very_recom", ]
+train2.data <- train.data
+for (i in 1:3) {
+  train2.data <- rbind(train2.data, vr)  
+}
+prop.table((table(train2.data$class)))
+\end{Sinput}
+\begin{Soutput}
+#> 
+#>    not_recom     priority    recommend   spec_prior   very_recom 
+#> 0.3097810498 0.3059565924 0.0001912229 0.2899894827 0.0940816522
+\end{Soutput}
+\end{Schunk}
+
+\hypertarget{corrected-random-forest-model-prediction-and-evaluation}{%
+\subsection{Corrected Random Forest model prediction and
+evaluation}\label{corrected-random-forest-model-prediction-and-evaluation}}
+
+\begin{Schunk}
+\begin{Sinput}
+library(randomForest)
+fitRF2 <- randomForest(
+  as.factor(class)~parents+has_nurs+form+children+housing+finance+social+health,
+  data=train2.data, importance=TRUE, ntree=1000)
+\end{Sinput}
+\end{Schunk}
+
+Now let's calculate prediction and it's evaluation using the corrected
+dataset. As we expected, now all the ``very\_recom'' values of the
+target ``class'' attribute were predicted correctly which led to total
+accuracy of the prediction to 99\% with overall balanced precision more
+that 90\% accross all the predicted ``class'' values.
+
+\begin{Schunk}
+\begin{Sinput}
+PredictionRF2 <- predict(fitRF2, test.data)
+confMat2 <- table(PredictionRF2,test.data$class)
+confMat2
+\end{Sinput}
+\begin{Soutput}
+#>              
+#> PredictionRF2 not_recom priority recommend spec_prior very_recom
+#>    not_recom       1080        0         0          0          0
+#>    priority           0     1036         0         15          1
+#>    recommend          0        0         0          0          0
+#>    spec_prior         0       28         0        996          0
+#>    very_recom         0        2         0          0         81
+\end{Soutput}
+\begin{Sinput}
+accuracy <- sum(diag(confMat2))/sum(confMat2)
+cat(sprintf("\nAccuracy=%f", accuracy))
+\end{Sinput}
+\begin{Soutput}
+#> 
+#> Accuracy=0.985798
+\end{Soutput}
+\end{Schunk}
+
+\newpage
 
 \hypertarget{conclusion}{%
 \section{Conclusion}\label{conclusion}}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-mollit anim id est laborum.
-
-This file is only a basic article template. For full details of
-\emph{The R Journal} style and information on how to prepare your
-article for submission, see the
-\href{https://journal.r-project.org/share/author-guide.pdf}{Instructions
-for Authors}.
+Through exploring the Nursery Dataset and using a classification model
+to developed our algorithm to predict applicants suitabilty of an
+admittance within the nursery school system, the evaluation of the model
+was developed using Random Forest algorithm. Even though the original
+dataset was clear and did not have missing values, it was unballanced.
+To overcome this a method called Random Over-Sampling was appplied,
+which increased the number of instances in the minority class by
+randomly replicating them in order to present a higher representation of
+the minority class in the sample. The final model achieved almost 99\%
+accuracy of predictions with overall balanced precision more that 90\%
+accross all the predicted ``class'' values. The project was a success.
 
 \bibliography{RJreferences}
+
+\newpage
+
+\hypertarget{note-from-the-authors}{%
+\section{Note from the Authors}\label{note-from-the-authors}}
+
+This file was generated using
+\href{https://github.com/rstudio/rticles}{\emph{The R Journal} style
+article template}, additional information on how to prepare articles for
+submission is here -
+\href{https://journal.r-project.org/share/author-guide.pdf}{Instructions
+for Authors}. The article itself is an executable R Markdown file that
+could be
+\href{https://github.com/ivbsoftware/scda1010-lab1/tree/master/docs/R_Journal/csda1010-lab1lab1}{downloaded
+from Github} with all the necessary artifacts.
 
 
 \address{%
 Viviane Adohouannon\\
-York University School of Continious Studies\\
+York University School of Continuing Studies\\
 \\
 }
 \url{https://learn.continue.yorku.ca/user/view.php?id=21444}
 
 \address{%
 Kate Alexander\\
-York University School of Continious Studies\\
+York University School of Continuing Studies\\
 \\
 }
 \url{https://learn.continue.yorku.ca/user/view.php?id=21524}
 
 \address{%
-Juan Arangote\\
-York University School of Continious Studies\\
-\\
-}
-\url{https://learn.continue.yorku.ca/user/view.php?id=21472}
-
-\address{%
-Dian Azbel\\
-York University School of Continious Studies\\
+Diana Azbel\\
+York University School of Continuing Studies\\
 \\
 }
 \url{https://learn.continue.yorku.ca/user/view.php?id=20687}
 
 \address{%
 Igor Baranov\\
-York University School of Continious Studies\\
+York University School of Continuing Studies\\
 \\
 }
 \url{https://learn.continue.yorku.ca/user/profile.php?id=21219}

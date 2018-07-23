@@ -1,5 +1,5 @@
 ---
-title: Ranking Applications for Nursery Schools
+title: Ranking Applications for Nursery Schools Classification Problem
 
 author: 
   - name          : "Viviane Adohouannon"
@@ -16,9 +16,7 @@ author:
     email         : "https://learn.continue.yorku.ca/user/profile.php?id=21219"  
 
 Abstract: >
-The specific problem under consideration is to rank selection of applicants for nursery schools in Ljubljana, Slovenia in the 1980's. 
-Nursery Database was derived from a hierarchical decision model originally developed to rank applications.
-A classification model has been used to developed a reliable recomendation algorithm to predict if a specific applicant is a suitable candidate to be addmitted into a nursery school. 
+  The specific problem under consideration is to rank selection of applicants for nursery schools in Ljubljana, Slovenia in the 1980's. Nursery Database was derived from a hierarchical decision model originally developed to rank applications. A classification model has been used to developed a reliable recomendation algorithm to predict if a specific applicant is a suitable candidate to be addmitted into a nursery school.
 
 output:
   rticles::rjournal_article:
@@ -27,135 +25,157 @@ output:
 ---
 
 # Introduction
-Malala Yousafzai once said, “Let us remember: One book, one pen, one child, and one teacher can change the world.” Education is important because it gives people the skills of basic literacy and numeracy, as well as the ability to communicate, complete tasks and work with others. 
+Malala Yousafzai once said, Let us remember: One book, one pen, one child, and one teacher can change the world. Education is important because it gives people the skills of basic literacy and numeracy, as well as the ability to communicate, complete tasks and work with others. 
 
 Early schooling such as Nursery school education matters most as it impacts children's long-term development and academic progress. While all children benefit from a high-quality nursery school, family structure, social and financial standing, and proximity to schools may affect the enrollment process. 
 
-Nursery Database was derived from a hierarchical decision model originally developed to rank applications for nursery schools. It was used during several years in 1980's when there was excessive enrollment to these schools in Ljubljana, Slovenia, and the rejected applications frequently needed an objective explanation.
-Source: http://archive.ics.uci.edu/ml/datasets/Nursery
+Nursery Database \citep{noauthor_uci_nodate} was derived from a hierarchical decision model originally developed to rank applications for nursery schools. It was used during several years in 1980's when there was excessive enrollment to these schools in Ljubljana, Slovenia, and the rejected applications frequently needed an objective explanation.
 
 ## Background
-Ljubljana is the capital and largest city of Slovenia. The city with an area of 163.8 square kilometers is situated in the Ljubljana Basin in Central Slovenia, between the Alps and the Karst. Ljubljana is located some 320 kilometers south of Munich, 477 kilometers  east of Zürich. In 1981 the population of the city rose to 224,817 inhabients with approximately 91% of the population speak Slovene as their primary native language. The second most-spoken language is Bosnian, with Serbo-Croatian being the third most-spoken language.
-Source: https://en.wikipedia.org/wiki/Ljubljana
+Ljubljana is the capital and largest city of Slovenia. The city with an area of 163.8 square kilometers is situated in the Ljubljana Basin in Central Slovenia, between the Alps and the Karst. Ljubljana is located some 320 kilometers south of Munich, 477 kilometers  east of Zürich. In 1981 the population of the city rose to 224,817 inhabients with approximately 91% of the population speak Slovene as their primary native language. The second most-spoken language is Bosnian, with Serbo-Croatian being the third most-spoken language \citep{noauthor_ljubljana_2018}.
 
-During this time "new housing developments populated by young families, the demand for children’s admission in nursery schools outstrips supply,    notwithstanding the fast growth rate of new schools."
+During this time according to \citep{olave1989application} "new housing developments populated by young families, the demand for childrens admission in nursery schools outstrips supply, notwithstanding the fast growth rate of new schools." In this research, conducted in 1989, an application of expert systems for admission procedures in public
+school systems was presented. The specific problem under consideration was selection of applicants for public nursery schools. The selection was supported by an expert system which evaluates, classifies and ranks applications.
+The main emphasis was on explanation of the underlying knowledge and solutions, suggested by the system. The system has been developed using DECMAK, an expert system shell for multi-attribute decision making.
 
-Source: http://kt.ijs.si/MarkoBohanec/pub/Nursery89.pdf
-M. Olave, V. Rajkovic, M. Bohanec: An application for admission in public school systems. In (I. Th. M. Snellen and W. B. H. J. van de Donk and J.-P. Baquiast, editors) Expert Systems in Public Administration, pages 145-160. Elsevier Science Publishers (North Holland), 1989.
+In continuation of the search for the practical solution of the problem, second most relevant research was conducted in 1997 \citep{zupan1997machine}. It presented another machine learning method that, given a set of training examples, induced
+a definition of the target concept in terms of a hierarchy of intermediate concepts and their definitions. This effectively decomposed the problem into smaller, less complex problems. The method was inspired by the Boolean function decomposition approach to the design of digital circuits. To cope with high time complexity of inding an optimal decomposition,
+the authors proposed a suboptimal heuristic algorithm.
+
+It worth to notice that in both cases the researches concentrated on designing and teoretical evaluation of mentioned algorithms without proposing a practical solution that could be deployed in the municipalities and put in use. The reason of this was a relatively high  at the time price of computers that could make predictictions with the models proposed.
 
 ## Objective
-
-The objective is to provide a reliable recommendation algorithm to predict if a specific applicant is a suitable candidate to be admitted into a nursery school or if the applicant should stay with their parents. The results of this recommendation may affect the child’s engagement within the school, parents’ involvement in school activities and overall satisfaction of the applicants long-term academic progress.
-
-The most important decisions depended on three sub-problems: 
-  - Occupation of parents and child's nursery;
-  - Family structure and financial standing; 
-  - Social and health picture of the family. 
+The objective of this article is to provide a reliable and feasible recommendation algorithm to predict if a specific applicant is a suitable candidate to be admitted into a nursery school or if the applicant should stay with their parents. The results of this recommendation may affect the childs engagement within the school, parents involvement in school activities and overall satisfaction of the applicants long-term academic progress.
   
-## Assessment of Situation
-The following tables presents the input attributes description with their structure:
-
-##Table 1: Variables description
-
-##Table 2: Target variables description
-
-Number of Attributes: 8, Number of Instances: 12960
-
-From the data snapshot, 33% of nursery school applications ended not being recommended because of multiple reasons. However some of the applications that were recommended came from parents having good health conditions (67%) and some applications have really good social conditions contributed by 33% of the parents nursery applications being recommended.
-
-##Frequency Table: Targeted variable
-
-##Frequency Table: Targeted variable vs attributes
-
-
 ## Plan
-To solve the objective a group of four students calling themselves The First Group (T.F.G) from York University School of Continuing Studies, have come together to create an algorithm to test and train a classification model using the Nursery dataset. 
+To solve the objective a group of four students calling themselves The First Group (T.F.G) from York University School of Continuing Studies, have come together to create an algorithm using the Nursery dataset. Since the target of this problem is a categorical value representing recommendation if a child is sutable for the addmitted to a nursery school, a  supervised classification algorithm was chosen \citep{witten_data_2011}.
 
-The main tool used in developing the recomendation algorithm is R. The R language is widely used among statisticians and data miners for developing statistical software and data analysis.
-
+The main tool used in developing the recomendation algorithm is R \citep{R}. The R language is widely used among statisticians and data miners for developing statistical software and data analysis.
 
 # Data understanding
-Being able to have a positive outcome from the classification model, preparation of the Nursery dataset followed by descriptive satistic will be the first key step in producing a Random Forest model.
+The dataset \citep{noauthor_uci_nodate} has 8 attributes and 12960 instances. Creators of the dataset suggested hierarchical model ranks nursery-school applications according to the following concept structure: 
+
+```
+NURSERY Evaluation of applications for nursery schools 
+. EMPLOY Employment of parents and child's nursery 
+. . parents Parents' occupation 
+. . has_nurs Child's nursery 
+. STRUCT_FINAN Family structure and financial standings 
+. . STRUCTURE Family structure 
+. . . form Form of the family 
+. . . children Number of children 
+. . housing Housing conditions 
+. . finance Financial standing of the family 
+. SOC_HEALTH Social and health picture of the family 
+. . social Social conditions 
+. . health Health conditions 
+```
+
+Nursery Database contains examples with the structural information removed, i.e., directly relates NURSERY to the eight input attributes: parents, has_nurs, form, children, housing, finance, social, health. Data set attribes presented in the following form:
+
+```
+parents: usual, pretentious, great_pret 
+has_nurs: proper, less_proper, improper, critical, very_crit 
+form: complete, completed, incomplete, foster 
+children: 1, 2, 3, more 
+housing: convenient, less_conv, critical 
+finance: convenient, inconv 
+social: non-prob, slightly_prob, problematic 
+health: recommended, priority, not_recom
+```
+
+Target attribute called "class" is a categorical variable having several values that were not revealed in original dataset description and had to be extracted from the data.
 
 ## Preparation
-```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+To perform the analysys, certain R libraries were used. Code below was used to load and initialize the libraries. The first line invoking seed function was applied to enforce the repeteability of the calculation results.
+
+```{r echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
 set.seed(42)
-library(readr)
-library(dplyr)
 library(ggplot2)
 library(rpart)
 library(rpart.plot)
-library(Amelia)
 library(rattle)
-library(RColorBrewer)
 library(caret)
 ```
 
-```{r message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
+The dataset was loaded directly from the dataset site \citep{noauthor_uci_nodate} using the R statement below. Note that we assigned column names since the online data didn't have the header. To pretty-print the head of the dataset xtable \citep{R-xtable} library was used to generate Table \ref{table:dhead10}.
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+library(readr)
+nursery_data <- 
+  read.csv("http://archive.ics.uci.edu/ml/machine-learning-databases/nursery/nursery.data", 
+  header = FALSE, 
+  col.names = c("parents","has_nurs","form", "children","housing","finance",
+                "social","health","class"))
+```
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
+# A backup method of loading the dataset in case the site is down
+library(readr)
+nursery_data <- read.csv(file = "../../../data/nursery_data.csv", 
+  colClasses=c("NULL",NA,NA,NA,NA,NA,NA,NA,NA,NA))
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE, results='asis'}
 library(xtable)
 options(xtable.floating = TRUE)
 options(xtable.timestamp = "")
 options(xtable.comment = FALSE)
-```
 
+dh.rescale <- xtable(head(nursery_data, n=10), 
+  caption = "\\tt Nursery Data Dataset (head)", label = "table:dhead10")
 
-```{r eval=FALSE, include=FALSE}
-nursery_data <- 
-  read.csv("http://archive.ics.uci.edu/ml/machine-learning-databases/nursery/nursery.data", 
-  header = FALSE, 
-  col.names = c("parents","has_nurs","form",
-                "children","housing","finance",
-                "social","health","class"))
-```
-
-```{r message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
-nursery_data <- read.csv(file = "../../../data/nursery_data.csv")
-```
-
-```{r echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
-dh.rescale <- xtable(head(nursery_data, n=10), caption = "\\tt Nursery Data Dataset (head)")
 print(dh.rescale, scalebox=.75)
 ```
 
-Summary of Nursery Data set is extracted by the folloving 'summary' function, the results are presented in Table \ref{table:dsum1} and Table \ref{table:dsum2}.
-
-We can conclude that there is no missing information and dataset is in good standing to be used.
-
-```{r echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
-dsum <- summary(nursery_data)
-xtable(dsum[,1:5], caption = "\\tt Summary of Nursery Data Dataset, columns 1-5", label = "table:dsum1")
-xtable(dsum[,6:9], caption = "\\tt Summary of Nursery Data Dataset, columns 6-9", label = "table:dsum2")
+Summary of Nursery Data set is extracted by the R summary function, the results are presented below.
+```{r echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+summary(nursery_data)
 ```
-Distribution of Class attribute presented in Figure2 \ref{fig:classd} shows the targeted variables with five segments. The frequency of the segment "Recommend" is low (0.00015%) and will not be taken into consideration in the final dataset.
 
+Taking quick look at the summary we noticed that target attribute 'class' is presented in the dataset by 5 values that look like logically go in the order of recommendation strength:
 
-```{r classd, fig.height=3, fig.width=5, fig.align="center", fig.cap="Distribution of Class attribute"}
+* not_recom
+* recommend
+* very_recom
+* priority
+* special_prior
+
+Note that 'recommend' value is presented in the dataset by only 2 rows. Let's look at the distribution of values. The frequency of the segment "Recommend" is low (0.00015%) and will not be have effect on the results of prediction algorithms.
+```{r echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
 prop.table((table(nursery_data$class)))
-ggplot(nursery_data, aes(x=as.factor(class) )) + 
+```
+
+The following code that uses graphical R ggplot library \citep{R-ggplot2} gererates a graphical presentation of this distribution.
+
+```{r classd, fig.pos = 'h', fig.height=3, fig.width=5, fig.align="center", fig.cap="Distribution of Class attribute" }
+ggplot(nursery_data, aes(x=class)) + 
   geom_bar(aes(y= (..count..)/sum(..count..)),color="blue",fill=rgb(0.2,0,0.5)) +
   theme(legend.position = "none") +
   scale_y_continuous(labels=scales:::percent) +
   labs(x = "class",y="total")
 ```
 
-The following code (Figure \ref{fig:classdp}) renders distribution of class attribute depending on parents attribute. From this graph, it clearly shows that priority and recommendation are given to application from parent having usual and pretentious occupations. 
+Figure \ref{fig:classd} shows the targeted attribute with five segments. From the data snapshot, 33% of nursery school applications ended not being recommended. As expected, 'recommend' value has almost no visible presentation. It worth to notice that presentation of 'very_recom' value is also very low in the dataset and almost 10 times lower than other values. This might be an issue that could affect the accuracy of the model and most likely will have to be taken care of later. We can also conclude that there is no missing information and dataset is in good standing to be used.
 
-```{r classdp, fig.height=3, fig.width=6, fig.align="center", fig.cap="Distribution of Class attribute depending on parents"}
-ggplot(nursery_data,aes(x=factor(parents),fill=factor(class)))+
+The following code rendered to (Figure \ref{fig:classdp}) shows distribution of class attribute depending on parents attribute. From this graph, it clearly shows that priority and recommendation are given to application from 'pretentious' parents while recommending kids with usual parents to stay homet. 
+
+```{r classdp, fig.pos = 'h', fig.height=3, fig.width=5, fig.align="center", fig.cap="Distribution of Class attribute depending on parents"}
+ggplot(nursery_data,aes(x=class, fill=parents))+
   geom_bar(position="dodge")
 ```
 
-The following code (Figure \ref{fig:classdh}) renders distribution of class attribute depending on 'health' attribute. Being healthy is most important and relevant for parents to have their nursery application being recommended. Parents having strong and good social situation are more likely to have their application being recommended.
+The following code rendered to (Figure \ref{fig:classdh}) shows distribution of class attribute depending on child 'health' attribute. Being healthy is most important and relevant for parents to have their nursery application being recommended. Parents having strong and good social situation are more likely to have their application being recommended.
 
-```{r classdh, fig.height=3, fig.width=6, fig.align="center", fig.cap="Distribution of Class attribute depending on health"}
+```{r classdh, fig.pos = 'h', fig.height=3, fig.width=6, fig.align="center", fig.cap="Distribution of Class attribute depending on health"}
 nursery_data$health <- as.factor(nursery_data$health)
 ggplot(data = nursery_data, mapping = aes(x = class, fill = health)) +
   geom_bar()
 ```
-The following code (Figure \ref{fig:classdi}) renders distribution of class attribute depending on 'social' attribute. 
+To analyze distribution of class attribute depending on 'social' and 'parents' attributes the following code renders (Figure \ref{fig:classdi}).
 
-```{r classdi, fig.height=3, fig.width=6, fig.align="center", fig.cap="Distribution of Class attribute depending on income"}
-ggplot(nursery_data, aes(social, fill=class)) + 
+```{r classdi, fig.pos = 'h', fig.height=3, fig.width=5, fig.align="center", fig.cap="Distribution of Class attribute depending on income"}
+ggplot(nursery_data, aes(class, fill=social)) + 
   geom_bar(aes(y = (..count..)/sum(..count..)), alpha=0.9) +
   facet_wrap(~parents) + 
   scale_fill_brewer(palette = "Dark2", direction = -1) +
@@ -166,10 +186,10 @@ ggplot(nursery_data, aes(social, fill=class)) +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
 ```
-The following code (Figure \ref{fig:classdi}) renders distribution of 'class' attribute depending on 'nursery' attribute. Parents in segments "Proper" and "less_Proper" appear to have similar distribution and their application taken as priority.
+The following code (Figure \ref{fig:classdn}) renders distribution of 'class' attribute depending on 'has_nurs' and 'form' attribute. Parents in segments "proper" and "less_proper" appear to have similar distribution and their application taken as priority.
 
-```{r classdn, fig.height=5, fig.width=6, fig.align="center", fig.cap="Distribution of Class attribute depending on nursery"}
-ggplot(nursery_data, aes(form, fill=class)) + 
+```{r classdn, fig.pos = 'h', fig.height=5, fig.width=5, fig.align="left", fig.cap="Distribution of Class attribute depending on nursery"}
+ggplot(nursery_data, aes(class, fill=form)) + 
   geom_bar(aes(y = (..count..)/sum(..count..)), alpha=0.9) +
   facet_wrap(~has_nurs) + 
   scale_fill_brewer(palette = "Dark2", direction = -1) +
@@ -179,14 +199,14 @@ ggplot(nursery_data, aes(form, fill=class)) +
   theme(plot.title = element_text(hjust = 0.5)) +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 ```
+Te analysys of interdependance of differentattributes and their influence on the target "class" attribute does not give as a clear picture of the importance of those attributes. The exclusion is the 'health' attribute that seems to have a visible correlation with the target. The more sofisticated nethods should be applied to evaluate the attribute importance.
 
 # Modeling
 ## Splitting the dataset into train and test
-
-The Nursery dataset has been split in such a way that train and test sets would have the same distribution of the 'class' attribute. The reason for this is to focus on the priority of an applicants placement in a nursery school rather than an applicants family or social status.
+The Nursery dataset has been split in such a way that train and test sets would have the same distribution of the 'class' attribute. The reason for this stratification strategy is to focus on the priority of an applicants placement in a nursery school rather than an applicants family or social status. We used 75:25 split ratio. 
 
 ```{r}
-train.rows<- createDataPartition(y= nursery_data$class, p=0.9, list = FALSE)
+train.rows<- createDataPartition(y= nursery_data$class, p=0.75, list = FALSE)
 train.data<- nursery_data[train.rows,]
 prop.table((table(train.data$class)))
 ```
@@ -196,9 +216,9 @@ test.data<- nursery_data[-train.rows,]
 prop.table((table(test.data$class)))
 ```
 
-The following code (Figure \ref{fig:testd}) renders distribution of 'class' attribute depending on 'nursery' attribute. ...
+The code below (Figure \ref{fig:testd}) renders distribution of 'class' attribute depending on 'nursery' attribute. Not suprisingly, the test set did not get any of rows with "recommend" class attribute.
 
-```{r testd, fig.height=3, fig.width=6, fig.align="center", fig.cap="Distribution of Class attribute depending on nursery"}
+```{r testd, fig.pos = 'h', fig.height=3, fig.width=5, fig.align="center", fig.cap="Distribution of Class attribute depending on nursery"}
 ggplot(test.data, aes(x=as.factor(class))) + 
   geom_bar(aes(y = (..count..)/sum(..count..)),width=0.4,
   color="red", fill=rgb(0.9,1,0.7) )+theme(legend.position = "none") + 
@@ -207,15 +227,19 @@ ggplot(test.data, aes(x=as.factor(class))) +
 
 
 ## Decision Tree model fit
+As a first step we have used a Decision Tree model \citep{R-rpart}. Though this model is known to be computationally fast but not very precise, we have use all default parameters and all attributes of the train dataset in the resulting Decision Tree presented in Figure \ref{fig:dtree}. 
 
-As a first step we have train a Decision Tree model. Though this model is known to be computationally fast but not very precise, we have use all default parameters and all attributes of the train dataset in the resulting Decision Tree presented in Figure \ref{fig:dtree}. This tree shows that..  
 
-```{r dtree, fig.align="center", fig.cap="Decision tree diagram", message=FALSE, warning=FALSE, paged.print=FALSE}
-fitdt <- rpart(as.factor(class)~., method="class", data=train.data)
-fancyRpartPlot(fitdt, main = "", sub = "")
+```{r dtree, fig.pos='h', fig.width=6, fig.align="center", fig.cap="Decision tree diagram", message=FALSE, warning=FALSE}
+fitdt <- rpart(
+  as.factor(class)~parents+has_nurs+form+children+housing+finance+social+health,
+  method="class", data=train.data)
+fancyRpartPlot(fitdt, main="", sub="")
 ```
 
 ## Decision Tree model evaluation
+This tree favorits the following attributes in order of their importance for the prediction of the target attribute: health, has_nurs, parents. It does not consider the rest of the attributes as important. Let's apply the model to the test set and evaluate accuracy of the predictions. 
+
 ```{r }
 dtPrediction <- predict(fitdt, test.data, type = "class")
 ```
@@ -227,27 +251,29 @@ accuracy <- sum(diag(confMat))/sum(confMat)
 cat(sprintf("\nAccuracy=%f", accuracy))
 ```
 
+As we can see, the models predicted all "not_recom" values correctly, wrongly predicted all "very_recom" values and had partial success predicting "priority and "special_priority" values. The overall accuracy is 87%, but the model is not precise and not usable.
+
 ## Random Forest model fit
+Next step is to use more advanced but more computationally demanding Random Forest method \citep{R-randomForest}:
 
 ```{r message=FALSE, warning=FALSE}
 library(randomForest)
-fitRF1 <- randomForest(as.factor(class)~.,
-                      data=train.data, 
-                      importance=TRUE, 
-                      ntree=1000)
+fitRF1 <- randomForest(
+  as.factor(class)~parents+has_nurs+form+children+housing+finance+social+health,
+  data=train.data, importance=TRUE, ntree=1000)
 ```
 
-Importance of the dataset attributes for the prediction of the 'class' attribute shown in Figure \ref{fig:forimp}. 
-
-```{r forimp, fig.align="center", message=FALSE, warning=FALSE, paged.print=FALSE, fig.cap="Importance of the dataset attributes for the prediction of the 'class' attribute"}
+```{r forimp, fig.pos='h', fig.width=5.5, fig.align="center", message=FALSE, warning=FALSE, paged.print=FALSE, fig.cap="Importance of the dataset attributes for the prediction of the 'class' attribute"}
 varImpPlot(fitRF1, main="")
 ```
 
+Importance of the dataset attributes for the prediction of the "class"" attribute shown in Figure \ref{fig:forimp}. Analyzing this chart we conclude that the proper order of attributes importance for the prediction of the target attribute is health, has_nurs, parents, housing, social, children. The rest two attributes are less important. This contradicts the original analysys \citep{noauthor_uci_nodate} were they assumed that parents and finance are the most important attributes and health is the least. The only way to solve this dilema is to calculate accuracy of our model. 
+
+\newpage
 ## Random Forest model prediction and evaluation
 
 ```{r}
 PredictionRF1 <- predict(fitRF1, test.data)
-head(PredictionRF1)
 ```
 
 ```{r}
@@ -257,11 +283,46 @@ accuracy <- sum(diag(confMat))/sum(confMat)
 cat(sprintf("\nAccuracy=%f", accuracy))
 ```
 
+The models predicted "not_recom" values correctly, "priority"" and "special_priority" values were predicted with about 90% accuracy. As expected, "very_recom" value was predicted poorly - with almost 40% error. The overall accuracy is much better at 97.8%, but the model is still not precise and not usable.
+
+\newpage
+## Imballanced Classification Correction
+To improve the precision of the model we need to take care of the imballanced distribution of rows with target value "very_recom". There are several technics to correct the problem of low accuracy in regards of predicting "very_recom" value of target attribute "class" \citep{noauthor_how_2017}. One particular method that we decided to employ is method called Random Over-Sampling, which increases the number of instances in the minority class by randomly replicating them in order to present a higher representation of the minority class in the sample. This method leads to no information loss, but increases the likelihood of overfitting since it replicates the minority class events. To decrease the latter, we will apply this technique only to train data. As you can see from the output of the code below the portion of "very_recom" value of the "class" attribute in new train2.data dataset is now about 40% of the rest of the values (excluding "recommend" of course).
+
+```{r}
+vr <- train.data[train.data[,"class"] == "very_recom", ]
+train2.data <- train.data
+for (i in 1:3) {
+  train2.data <- rbind(train2.data, vr)  
+}
+prop.table((table(train2.data$class)))
+```
+
+## Corrected Random Forest model prediction and evaluation
+
+```{r message=FALSE, warning=FALSE}
+library(randomForest)
+fitRF2 <- randomForest(
+  as.factor(class)~parents+has_nurs+form+children+housing+finance+social+health,
+  data=train2.data, importance=TRUE, ntree=1000)
+```
+
+Now let's calculate prediction and it's evaluation using the corrected dataset. As we expected, now all the "very_recom" values of the target "class" attribute were predicted correctly which led to total accuracy of the prediction to 99% with overall balanced precision more that 90% accross all the predicted "class" values.
+
+```{r}
+PredictionRF2 <- predict(fitRF2, test.data)
+confMat2 <- table(PredictionRF2,test.data$class)
+confMat2
+accuracy <- sum(diag(confMat2))/sum(confMat2)
+cat(sprintf("\nAccuracy=%f", accuracy))
+```
+
+\newpage
 # Conclusion
-Through exploring the Nursery Dataset and using a classification model to developed our algorithm to predict applicants suitabilty of an admittance within the nursery school system, the evaluation of the model results indicated the following:
+Through exploring the Nursery Dataset and using a classification model to developed our algorithm to predict applicants suitabilty of an admittance within the nursery school system, the evaluation of the model was developed using Random Forest algorithm. Even though the original dataset was clear and did not have missing values, it was unballanced. To overcome this a method called Random Over-Sampling was appplied, which increased the number of instances in the minority class by randomly replicating them in order to present a higher representation of the minority class in the sample. The final model achieved almost 99% accuracy of predictions with overall balanced precision more that 90% accross all the predicted "class" values. The project was a success.
 
-
-
-
-This file is only a basic article template. For full details of _The R Journal_ style and information on how to prepare your article for submission, see the [Instructions for Authors](https://journal.r-project.org/share/author-guide.pdf).
 \bibliography{RJreferences}
+
+\newpage
+# Note from the Authors
+This file was generated using [_The R Journal_ style article template](https://github.com/rstudio/rticles), additional information on how to prepare articles for submission is here - [Instructions for Authors](https://journal.r-project.org/share/author-guide.pdf). The article itself is an executable R Markdown file that could be [downloaded from Github](https://github.com/ivbsoftware/scda1010-lab1/tree/master/docs/R_Journal/csda1010-lab1lab1) with all the necessary artifacts.
