@@ -21,7 +21,7 @@ all children benefit from a high-quality nursery school, family
 structure, social and financial standing, and proximity to schools may
 affect the enrollment process.
 
-Nursery Database \citep{noauthor_uci_nodate} was derived from a
+Nursery dataset \citep{noauthor_uci_nodate} was derived from a
 hierarchical decision model originally developed to rank applications
 for nursery schools. It was used during several years in 1980's when
 there was excessive enrollment to these schools in Ljubljana, Slovenia,
@@ -34,9 +34,9 @@ explanation.
 Ljubljana is the capital and largest city of Slovenia. The city with an
 area of 163.8 square kilometers is situated in the Ljubljana Basin in
 Central Slovenia, between the Alps and the Karst. Ljubljana is located
-some 320 kilometers south of Munich, 477 kilometers east of ZÃ¼rich. In
-1981 the population of the city rose to 224,817 inhabients with
-approximately 91\% of the population speak Slovene as their primary
+some 320 kilometers south of Munich, 477 kilometers east of Zurich. In
+1981 the population of the city rose to 224,817 inhabitants with
+approximately 91\% of the population speaking Slovene as their primary
 native language. The second most-spoken language is Bosnian, with
 Serbo-Croatian being the third most-spoken language
 \citep{noauthor_ljubljana_2018}.
@@ -66,7 +66,7 @@ high time complexity of inding an optimal decomposition, the authors
 proposed a suboptimal heuristic algorithm.
 
 It worth to notice that in both cases the researches concentrated on
-designing and teoretical evaluation of mentioned algorithms without
+designing and theoretical evaluation of mentioned algorithms without
 proposing a practical solution that could be deployed in the
 municipalities and put in use. The reason of this was a relatively high
 at the time price of computers that could make predictictions with the
@@ -90,7 +90,7 @@ To solve the objective a group of four students calling themselves The
 First Group (T.F.G) from York University School of Continuing Studies,
 have come together to create an algorithm using the Nursery dataset.
 Since the target of this problem is a categorical value representing
-recommendation if a child is sutable for the addmitted to a nursery
+recommendation if a child is suitable for the admittance to a nursery
 school, a supervised classification algorithm was chosen
 \citep{witten_data_2011}.
 
@@ -145,10 +145,10 @@ and had to be extracted from the data.
 \hypertarget{preparation}{%
 \subsection{Preparation}\label{preparation}}
 
-To perform the analysys, certain R libraries were used. Code below was
-used to load and initialize the libraries. The first line invoking seed
-function was applied to enforce the repeteability of the calculation
-results.
+To perform the analysis, certain R libraries were used. The code below
+was used to load and initialize the libraries. The first line invoking
+seed function was applied to enforce the repeatability of the
+calculation results.
 
 \begin{Schunk}
 \begin{Sinput}
@@ -162,10 +162,10 @@ library(caret)
 \end{Schunk}
 
 The dataset was loaded directly from the dataset site
-\citep{noauthor_uci_nodate} using the R statement below. Note that we
-assigned column names since the online data didn't have the header. To
-pretty-print the head of the dataset xtable \citep{R-xtable} library was
-used to generate Table \ref{table:dhead10}.
+\citep{noauthor_uci_nodate} using the R statement below. Note that
+column names were assigned as the online data did not have the header.
+To pretty-print the head of the dataset xtable \citep{R-xtable} library
+was used to generate Table \ref{table:dhead10}.
 
 \begin{Schunk}
 \begin{Sinput}
@@ -231,9 +231,9 @@ summary(nursery_data)
 \end{Soutput}
 \end{Schunk}
 
-Taking quick look at the summary we noticed that target attribute
-`class' is presented in the dataset by 5 values that look like logically
-go in the order of recommendation strength:
+Taking a quick look at the summary it is noticed that target attribute
+`class' is presented in the dataset by five values that appear logically
+in the order of recommendation strength:
 
 \begin{itemize}
 \tightlist
@@ -249,10 +249,10 @@ go in the order of recommendation strength:
   special\_prior
 \end{itemize}
 
-Note that `recommend' value is presented in the dataset by only 2 rows.
-Let's look at the distribution of values. The frequency of the segment
-``Recommend'' is low (0.00015\%) and will not be have effect on the
-results of prediction algorithms.
+Note that `recommend' value is presented in the dataset by only two
+rows. Let's look at the distribution of values. The frequency of the
+segment ``recommend'' is low (0.00015\%) and will not be have effect on
+the results of prediction algorithms.
 
 \begin{Schunk}
 \begin{Sinput}
@@ -290,8 +290,8 @@ ggplot(nursery_data, aes(x=class)) +
 Figure \ref{fig:classd} shows the targeted attribute with five segments.
 From the data snapshot, 33\% of nursery school applications ended not
 being recommended. As expected, `recommend' value has almost no visible
-presentation. It worth to notice that presentation of `very\_recom'
-value is also very low in the dataset and almost 10 times lower than
+presentation. It is worth noticing that presentation of `very\_recom'
+value is also very low in the dataset and almost ten times lower than
 other values. This might be an issue that could affect the accuracy of
 the model and most likely will have to be taken care of later. We can
 also conclude that there is no missing information and dataset is in
@@ -299,9 +299,9 @@ good standing to be used.
 
 The following code rendered to (Figure \ref{fig:classdp}) shows
 distribution of class attribute depending on parents attribute. From
-this graph, it clearly shows that priority and recommendation are given
-to application from `pretentious' parents while recommending kids with
-usual parents to stay homet.
+this graph, it clearly shows that `priority' and `recommendation' are
+given to applications from `pretentious' parents while recommending kids
+with usual parents to stay home.
 
 \begin{Schunk}
 \begin{Sinput}
@@ -322,8 +322,8 @@ The following code rendered to (Figure \ref{fig:classdh}) shows
 distribution of class attribute depending on child `health' attribute.
 Being healthy is most important and relevant for parents to have their
 nursery application being recommended. Parents having strong and good
-social situation are more likely to have their application being
-recommended.
+social situation are more likely to have their application recommended
+than the ones who do not.
 
 \begin{Schunk}
 \begin{Sinput}
@@ -392,11 +392,11 @@ ggplot(nursery_data, aes(class, fill=form)) +
 \end{figure}
 \end{Schunk}
 
-Te analysys of interdependance of differentattributes and their
-influence on the target ``class'' attribute does not give as a clear
-picture of the importance of those attributes. The exclusion is the
-`health' attribute that seems to have a visible correlation with the
-target. The more sofisticated nethods should be applied to evaluate the
+To analyze the interdependance of different attributes and their
+influence on the target ``class'' attribute does not provide as a clear
+picture of the importance of those attributes. The exclusion of the
+`health' attribute seems to have a visible correlation with the target.
+The more sophisticated method should be applied to evaluate the
 attribute importance.
 
 \hypertarget{modeling}{%
@@ -488,11 +488,11 @@ fancyRpartPlot(fitdt, main="", sub="")
 \subsection{Decision Tree model
 evaluation}\label{decision-tree-model-evaluation}}
 
-This tree favorits the following attributes in order of their importance
-for the prediction of the target attribute: health, has\_nurs, parents.
-It does not consider the rest of the attributes as important. Let's
-apply the model to the test set and evaluate accuracy of the
-predictions.
+This Decision Tree favours the following attributes in order of their
+importance for the prediction of the target attribute: health,
+has\_nurs, parents. It does not consider the rest of the attributes as
+important. Let's apply the model to the test set and evaluate accuracy
+of the predictions.
 
 \begin{Schunk}
 \begin{Sinput}
@@ -526,7 +526,7 @@ cat(sprintf("\nAccuracy=%f", accuracy))
 
 As we can see, the models predicted all ``not\_recom'' values correctly,
 wrongly predicted all ``very\_recom'' values and had partial success
-predicting ``priority and''special\_priority" values. The overall
+predicting ``priority'' and ``special\_priority'' values. The overall
 accuracy is 87\%, but the model is not precise and not usable.
 
 \hypertarget{random-forest-model-fit}{%
@@ -558,13 +558,13 @@ varImpPlot(fitRF1, main="")
 \end{figure}
 \end{Schunk}
 
-Importance of the dataset attributes for the prediction of the
-``class''" attribute shown in Figure \ref{fig:forimp}. Analyzing this
-chart we conclude that the proper order of attributes importance for the
-prediction of the target attribute is health, has\_nurs, parents,
-housing, social, children. The rest two attributes are less important.
-This contradicts the original analysys \citep{noauthor_uci_nodate} were
-they assumed that parents and finance are the most important attributes
+Importance of the dataset attributes for the prediction of the ``class''
+attribute shown in Figure \ref{fig:forimp}. Analyzing this chart we
+conclude that the proper order of attributes importance for the
+prediction of the target attribute is: health, has\_nurs, parents,
+housing, social, children. The last two attributes are less important.
+This contradicts the original analysis \citep{noauthor_uci_nodate} where
+it is assumed that parents and finance are the most important attributes
 and health is the least. The only way to solve this dilema is to
 calculate accuracy of our model.
 
@@ -604,7 +604,7 @@ cat(sprintf("\nAccuracy=%f", accuracy))
 \end{Soutput}
 \end{Schunk}
 
-The models predicted ``not\_recom'' values correctly, ``priority''" and
+The models predicted ``not\_recom'' values correctly, ``priority'' and
 ``special\_priority'' values were predicted with about 90\% accuracy. As
 expected, ``very\_recom'' value was predicted poorly - with almost 40\%
 error. The overall accuracy is much better at 97.8\%, but the model is
@@ -618,8 +618,8 @@ Correction}\label{imballanced-classification-correction}}
 
 To improve the precision of the model we need to take care of the
 imballanced distribution of rows with target value ``very\_recom''.
-There are several technics to correct the problem of low accuracy in
-regards of predicting ``very\_recom'' value of target attribute
+There are several techniques to correct the problem of low accuracy in
+regards to predicting ``very\_recom'' value of target attribute
 ``class'' \citep{noauthor_how_2017}. One particular method that we
 decided to employ is method called Random Over-Sampling, which increases
 the number of instances in the minority class by randomly replicating
@@ -627,10 +627,10 @@ them in order to present a higher representation of the minority class
 in the sample. This method leads to no information loss, but increases
 the likelihood of overfitting since it replicates the minority class
 events. To decrease the latter, we will apply this technique only to
-train data. As you can see from the output of the code below the portion
-of ``very\_recom'' value of the ``class'' attribute in new train2.data
-dataset is now about 40\% of the rest of the values (excluding
-``recommend'' of course).
+train data. As you can see from the output of the code below, the
+portion of ``very\_recom'' value of the ``class'' attribute in new
+train2.data dataset is now about 30\% comparing to previous 7\% of the
+rest of the values (excluding ``recommend'' of course).
 
 \begin{Schunk}
 \begin{Sinput}
@@ -662,10 +662,10 @@ fitRF2 <- randomForest(
 \end{Schunk}
 
 Now let's calculate prediction and it's evaluation using the corrected
-dataset. As we expected, now all the ``very\_recom'' values of the
-target ``class'' attribute were predicted correctly which led to total
-accuracy of the prediction to 99\% with overall balanced precision more
-that 90\% accross all the predicted ``class'' values.
+dataset. As we expected, now all but one of the ``very\_recom'' values
+of the target ``class'' attribute were predicted correctly which led to
+total accuracy of the prediction to 99\% with overall balanced precision
+more that 97\% accross all the predicted ``class'' values.
 
 \begin{Schunk}
 \begin{Sinput}
@@ -697,7 +697,7 @@ cat(sprintf("\nAccuracy=%f", accuracy))
 \hypertarget{conclusion}{%
 \section{Conclusion}\label{conclusion}}
 
-Through exploring the Nursery Dataset and using a classification model
+Through exploring the Nursery dataset and using a classification model
 to developed our algorithm to predict applicants suitabilty of an
 admittance within the nursery school system, the evaluation of the model
 was developed using Random Forest algorithm. Even though the original
@@ -706,7 +706,7 @@ To overcome this a method called Random Over-Sampling was appplied,
 which increased the number of instances in the minority class by
 randomly replicating them in order to present a higher representation of
 the minority class in the sample. The final model achieved almost 99\%
-accuracy of predictions with overall balanced precision more that 90\%
+accuracy of predictions with overall balanced precision more that 97\%
 accross all the predicted ``class'' values. The project was a success.
 
 \bibliography{RJreferences}
